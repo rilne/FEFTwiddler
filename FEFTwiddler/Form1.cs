@@ -911,7 +911,13 @@ namespace FEFTwiddler
         public void UpdatePanel()
         {
             EventsOff();
-            var data = ItemDb.GetByID(item.ItemID);
+
+            var data = ItemDb.GetByID(0);
+            try
+            { data = ItemDb.GetByID(item.ItemID); }
+            catch(InvalidOperationException e)
+            { }
+
             Name.Text = data.DisplayName;
 
             try
