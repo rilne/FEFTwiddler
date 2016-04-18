@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using FEFTwiddler.Enums;
 using FEFTwiddler.Extensions;
 
 namespace FEFTwiddler.Model
@@ -15,24 +16,6 @@ namespace FEFTwiddler.Model
 
         private SaveFile _file;
 
-        /// <summary>You know, just so we're clear!</summary>
-        private long _headerOffset = 0;
-        /// <summary>Hex: 0x52455355 / Text: RESU</summary>
-        private byte[] _userMarker = new byte[] { 0x52, 0x45, 0x53, 0x55 };
-        private long _userOffset;
-        /// <summary>Hex: 0x30000000FFFF / Text: 0...ÿÿ</summary>
-        /// <remarks>This is some hacky shit right here. It sure would be nice to figure out the size of the USER block...</remarks>
-        private byte[] _fileDataMarker = new byte[] { 0x30, 0x00, 0x00, 0x00, 0xFF, 0xFF };
-        private long _fileDataOffset;
-        /// <summary>Hex: 0x504F4853 / Text: POHS</summary>
-        private byte[] _shopMarker = new byte[] { 0x50, 0x4F, 0x48, 0x53 };
-        private long _shopOffset;
-        /// <summary>Hex: 0x54494E55 / Text: TINU</summary>
-        private byte[] _characterMarker = new byte[] { 0x54, 0x49, 0x4E, 0x55 };
-        private long _characterOffset;
-        /// <summary>Hex: 0x49464552 / Text: IFER</summary>
-        private byte[] _weaponNameMarker = new byte[] { 0x49, 0x46, 0x45, 0x52 };
-        private long _weaponNameOffset;
         /// <summary>Hex: 0x4E415254 / Text: NART</summary>
         private byte[] _convoyMarker = new byte[] { 0x4E, 0x41, 0x52, 0x54 };
         private long _convoyOffset;
@@ -46,12 +29,21 @@ namespace FEFTwiddler.Model
 
         public byte[] AvatarName { get; set; }
 
+        public Shop HoshidoArmory { get; set; }
+        public Shop NohrArmory { get; set; }
+        public Shop HoshidoStore { get; set; }
+        public Shop NohrStore { get; set; }
+
         public uint Gold { get; set; }
 
         public Enums.Difficulty Difficulty { get; set; }
         public Enums.Ruleset Ruleset { get; set; }
 
         public ushort DragonVeinPoint { get; set; }
+
+        public byte[] UnlockedStatues1 { get; set; }
+        public byte[] UnlockedStatues2 { get; set; }
+        public byte[] UnlockedStatues3 { get; set; }
 
         public byte MaterialQuantity_Crystal { get; set; }
         public byte MaterialQuantity_Ruby { get; set; }
@@ -79,7 +71,8 @@ namespace FEFTwiddler.Model
         public uint BattlePoints { get; set; }
         public uint VisitPoints { get; set; }
 
-        public Enums.Map CurrentMap { get; set; }
+        public Enums.Chapter CurrentChapter { get; set; }
+        public List<ChapterHistoryEntry> ChapterHistory { get; set; }
 
         private List<Character> _characters = new List<Character>();
         public List<Character> Characters {
@@ -125,6 +118,13 @@ namespace FEFTwiddler.Model
             MaterialQuantity_Rice = max;
         }
 
+        public void UnlockAllStatues()
+        {
+            UnlockedStatues1 = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+            UnlockedStatues2 = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+            UnlockedStatues3 = new byte[] { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+        }
+
         #endregion
 
         public static ChapterSave FromSaveFile(SaveFile file)
@@ -148,18 +148,13 @@ namespace FEFTwiddler.Model
             using (var br = new BinaryReader(ms))
             {
                 ReadHeaderData(br);
-
-                br.AdvanceToValue(_userMarker);
-                _fileDataOffset = br.BaseStream.Position;
+                ReadCompressionRegionData(br);
                 ReadUserData(br);
-
-                br.AdvanceToValue(_fileDataMarker);
-                _fileDataOffset = br.BaseStream.Position;
-                ReadFileData(br);
-
-                br.AdvanceToValue(_characterMarker);
-                _characterOffset = br.BaseStream.Position;
+                ReadSPOTData(br);
+                ReadShopData(br);
                 ReadCharacters(br);
+                //ReadWeaponNameData(br);
+                //ReadConvoyData(br);
 
                 br.AdvanceToValue(_myCastleMarker);
                 _myCastleOffset = br.BaseStream.Position;
@@ -172,8 +167,15 @@ namespace FEFTwiddler.Model
             using (var ms = new MemoryStream(_file.DecompressedBytes))
             using (var bw = new BinaryWriter(ms))
             {
-                WriteFileData(bw);
+                WriteHeaderData(bw);
+                WriteCompressionRegionData(bw);
+                WriteUserData(bw);
+                WriteSPOTData(bw);
+                WriteShopData(bw);
                 WriteCharacters(bw);
+                //WriteWeaponNameData(bw);
+                //WriteConvoyData(bw);
+
                 WriteMyCastle(bw);
             }
 
@@ -192,12 +194,40 @@ namespace FEFTwiddler.Model
             br.ReadBytes(0x0F);
 
             // Avatar name
-            chunk = new byte[24];
-            br.Read(chunk, 0, 24);
+            chunk = new byte[0x18];
+            br.Read(chunk, 0, 0x18);
 
             AvatarName = chunk;
 
-            // Not sure about the rest. Guess it's a TODO.
+            // TODO
+            br.ReadBytes(0x99);
+        }
+
+        public void WriteHeaderData(BinaryWriter bw)
+        {
+            bw.BaseStream.Seek(0xC0, SeekOrigin.Current);
+        }
+
+        #endregion
+
+        #region Compression Region IO
+
+        public void ReadCompressionRegionData(BinaryReader br)
+        {
+            // EDNI
+            br.ReadBytes(0x4);
+
+            // Stuff
+            br.ReadBytes(0x80);
+        }
+
+        public void WriteCompressionRegionData(BinaryWriter bw)
+        {
+            // EDNI
+            bw.BaseStream.Seek(0x4, SeekOrigin.Current);
+
+            // Stuff
+            bw.BaseStream.Seek(0x80, SeekOrigin.Current);
         }
 
         #endregion
@@ -208,26 +238,31 @@ namespace FEFTwiddler.Model
         {
             byte[] chunk;
 
+            // RESU
+            br.ReadBytes(0x04);
+
             // Stuff
             br.ReadBytes(0x09);
 
-            // Map
-            chunk = new byte[1];
-            br.Read(chunk, 0, 1);
+            // Chapter
+            CurrentChapter = (Enums.Chapter)br.ReadByte();
 
-            // TODO: Add this once the enum is better fleshed-out
-            //CurrentMap = (Enums.Map)chunk[0];
+            // Stuff
+            br.ReadBytes(0x04);
 
-            // Not sure about the rest. Guess it's a TODO.
-        }
+            // Chapter history
+            ChapterHistory = new List<ChapterHistoryEntry>();
+            var chapterCount = br.ReadByte();
+            for (var i = 0; i < chapterCount; i++)
+            {
+                chunk = new byte[0x10];
+                br.Read(chunk, 0, 0x10);
 
-        #endregion
+                ChapterHistory.Add(new ChapterHistoryEntry(chunk));
+            }
 
-        #region File Data IO
-
-        public void ReadFileData(BinaryReader br)
-        {
-            byte[] chunk;
+            // Stuff (block of mostly 00s that starts with 00 80 and ends with 30 00 00 00 FF FF)
+            br.ReadBytes(0xE1);
 
             // Stuff
             br.ReadBytes(0x04);
@@ -256,14 +291,43 @@ namespace FEFTwiddler.Model
 
             Gold = BitConverter.ToUInt32(chunk, 0);
 
-            // Not sure about the rest. Guess it's a TODO.
+            // TODO
+            br.ReadBytes(0x14);
+
+            // FF FF FF FF
+            br.ReadBytes(0x04);
+
+            // Stuff (ends with 0x02)
+            br.ReadBytes(0x4D);
+
+            // TODO
+            //br.ReadBytes(0x49A);
+            // 0x216 in 9Hopper save
         }
 
-        public void WriteFileData(BinaryWriter bw)
+        public void WriteUserData(BinaryWriter bw)
         {
-            byte[] chunk;
+            // RESU
+            bw.BaseStream.Seek(0x04, SeekOrigin.Current);
 
-            bw.BaseStream.Seek(_fileDataOffset, SeekOrigin.Begin);
+            // Stuff
+            bw.BaseStream.Seek(0x09, SeekOrigin.Current);
+
+            // Chapter
+            bw.Write((byte)CurrentChapter);
+
+            // Stuff
+            bw.BaseStream.Seek(0x04, SeekOrigin.Current);
+
+            // Chapter history
+            bw.Write((byte)ChapterHistory.Count);
+            foreach (var chapterEntry in ChapterHistory)
+            {
+                bw.Write(chapterEntry.Raw);
+            }
+
+            // Stuff (block of mostly 00s that starts with 00 80 and ends with 30 00 00 00 FF FF)
+            bw.BaseStream.Seek(0xE1, SeekOrigin.Current);
 
             // Stuff
             bw.BaseStream.Seek(0x04, SeekOrigin.Current);
@@ -283,7 +347,183 @@ namespace FEFTwiddler.Model
             // Gold
             bw.Write(Gold);
 
-            // Not sure about the rest. Guess it's a TODO.
+            // TODO
+            bw.BaseStream.Seek(0x14, SeekOrigin.Current);
+
+            // FF FF FF FF
+            bw.BaseStream.Seek(0x04, SeekOrigin.Current);
+
+            // Stuff (ends with 0x02)
+            bw.BaseStream.Seek(0x4D, SeekOrigin.Current);
+
+            // TODO
+            //bw.BaseStream.Seek(0x49A, SeekOrigin.Current);
+            // 0x216 in 9Hopper save
+        }
+
+        #endregion
+
+        #region SPOT Region IO
+
+        // TODO: Rename these when it's known what SPOT is (maybe Spotpass?)
+
+        public void ReadSPOTData(BinaryReader br)
+        {
+            // TOPS
+            //br.ReadBytes(0x04);
+            // Use this until User Data size is fully understood
+            br.BaseStream.AdvanceToValue(new byte[] { 0x54, 0x4F, 0x50, 0x53 });
+
+            // Stuff
+            br.ReadBytes(0x1C);
+
+            // Stuff
+            var blockCount = br.ReadByte();
+            for (var i = 0; i < blockCount; i++)
+            {
+                br.ReadBytes(0x21);
+            }
+        }
+
+        public void WriteSPOTData(BinaryWriter bw)
+        {
+            // TOPS
+            //bw.BaseStream.Seek(0x04, SeekOrigin.Current);
+            // Use this until User Data size is fully understood
+            bw.BaseStream.AdvanceToValue(new byte[] { 0x54, 0x4F, 0x50, 0x53 });
+
+            // Stuff
+            bw.BaseStream.Seek(0x1C, SeekOrigin.Current);
+
+            var blockCount = bw.BaseStream.ReadByte();
+            for (var i = 0; i < blockCount; i++)
+            {
+                bw.BaseStream.Seek(0x21, SeekOrigin.Current);
+            }
+        }
+
+        #endregion
+
+        #region Shop IO
+
+        public void ReadShopData(BinaryReader br)
+        {
+            byte[] chunk; byte itemCount;
+
+            // POHS
+            br.ReadBytes(0x04);
+
+            // 00
+            br.ReadBytes(0x01);
+
+            // Dawn Armory
+            chunk = new byte[0x03];
+            br.Read(chunk, 0, 0x03);
+
+            HoshidoArmory = new Shop();
+            HoshidoArmory.Level = chunk[1];
+            itemCount = chunk[2];
+            for (var i = 0; i < itemCount; i++)
+            {
+                chunk = new byte[0x04];
+                br.Read(chunk, 0, 0x04);
+                HoshidoArmory.Items.Add(new ShopItem(chunk));
+            }
+
+            // Dusk Armory
+            chunk = new byte[0x03];
+            br.Read(chunk, 0, 0x03);
+
+            NohrArmory = new Shop();
+            NohrArmory.Level = chunk[1];
+            itemCount = chunk[2];
+            for (var i = 0; i < itemCount; i++)
+            {
+                chunk = new byte[0x04];
+                br.Read(chunk, 0, 0x04);
+                NohrArmory.Items.Add(new ShopItem(chunk));
+            }
+
+            // Rod Shop
+            chunk = new byte[0x03];
+            br.Read(chunk, 0, 0x03);
+
+            HoshidoStore = new Shop();
+            HoshidoStore.Level = chunk[1];
+            itemCount = chunk[2];
+            for (var i = 0; i < itemCount; i++)
+            {
+                chunk = new byte[0x04];
+                br.Read(chunk, 0, 0x04);
+                HoshidoStore.Items.Add(new ShopItem(chunk));
+            }
+
+            // Staff Store
+            chunk = new byte[0x03];
+            br.Read(chunk, 0, 0x03);
+
+            NohrStore = new Shop();
+            NohrStore.Level = chunk[1];
+            itemCount = chunk[2];
+            for (var i = 0; i < itemCount; i++)
+            {
+                chunk = new byte[0x04];
+                br.Read(chunk, 0, 0x04);
+                NohrStore.Items.Add(new ShopItem(chunk));
+            }
+        }
+
+        public void WriteShopData(BinaryWriter bw)
+        {
+            // POHS
+            bw.BaseStream.Seek(0x04, SeekOrigin.Current);
+
+            // 00
+            bw.BaseStream.Seek(0x01, SeekOrigin.Current);
+
+            // Dawn Armory
+            bw.Write(new byte[] {
+                0x00,
+                HoshidoArmory.Level,
+                (byte)HoshidoArmory.Items.Count
+            });
+            foreach (var item in HoshidoArmory.Items)
+            {
+                bw.Write(item.Raw);
+            }
+
+            // Dusk Armory
+            bw.Write(new byte[] {
+                0x00,
+                NohrArmory.Level,
+                (byte)NohrArmory.Items.Count
+            });
+            foreach (var item in NohrArmory.Items)
+            {
+                bw.Write(item.Raw);
+            }
+
+            // Rod Shop
+            bw.Write(new byte[] {
+                0x00,
+                HoshidoStore.Level,
+                (byte)HoshidoStore.Items.Count
+            });
+            foreach (var item in HoshidoStore.Items)
+            {
+                bw.Write(item.Raw);
+            }
+
+            // Staff Store
+            bw.Write(new byte[] {
+                0x00,
+                NohrStore.Level,
+                (byte)NohrStore.Items.Count
+            });
+            foreach (var item in NohrStore.Items)
+            {
+                bw.Write(item.Raw);
+            }
         }
 
         #endregion
@@ -292,6 +532,9 @@ namespace FEFTwiddler.Model
 
         private void ReadCharacters(BinaryReader br)
         {
+            // TINU
+            br.ReadBytes(4);
+
             // 01
             br.ReadBytes(1);
 
@@ -305,11 +548,12 @@ namespace FEFTwiddler.Model
                 {
                     case 0x00: // Deployed living units (battle prep only)
                     case 0x03: // Undeployed living units (all living units in my castle)
+                    case 0x05: // If after chapter 6, units you had at some point before the split who haven't rejoined yet (or at least I think that's what this is)
                     case 0x06: // Dead units
                         var characterCount = br.ReadByte();
                         for (var i = 0; i < characterCount; i++)
                         {
-                            ReadCurrentCharacter(br);
+                            ReadCurrentCharacter(br, nextBlock == 0x05);
                         }
                         break;
                     case 0xFF: // End of unit block
@@ -320,410 +564,149 @@ namespace FEFTwiddler.Model
             }
         }
 
-        private void ReadCurrentCharacter(BinaryReader br)
+        private void ReadCurrentCharacter(BinaryReader br, bool isAbsent)
         {
             byte[] chunk;
 
             var character = new Character();
 
-            // To make writing easier
-            character.BinaryPosition = br.BaseStream.Position;
+            character.IsAbsent = isAbsent;
 
-            // TODO
-            br.ReadBytes(1);
+            chunk = new byte[Model.Character.RawBlock1Length];
+            br.Read(chunk, 0, Model.Character.RawBlock1Length);
+            character.RawBlock1 = chunk;
 
-            // Read flags
-            byte[] flags = new byte[8];
-            br.Read(flags, 0, 8);
+            chunk = new byte[Model.Character.RawInventoryLength];
+            br.Read(chunk, 0, Model.Character.RawInventoryLength);
+            character.RawInventory = chunk;
 
-            // Character main data
-            chunk = new byte[8];
-            br.Read(chunk, 0, 8);
+            chunk = new byte[0x01];
+            br.Read(chunk, 0, 0x01);
+            character.RawNumberOfSupports = chunk.First();
 
-            character.Level = chunk[0];
-            character.Experience = chunk[1];
-            character.InternalLevel = chunk[2];
-            character.EternalSealsUsed = chunk[3];
-            character.CharacterID = (Enums.Character)(ushort)(chunk[4] + chunk[5] * 0x100);
-            character.ClassID = (Enums.Class)chunk[6];
-            character.Unknown011 = chunk[7];
+            chunk = new byte[character.RawNumberOfSupports];
+            br.Read(chunk, 0, character.RawNumberOfSupports);
+            character.RawSupports = chunk;
 
-            // Process flags
-            // character._IsCorrin = (chunk[0] & 0x01) == 0x01;
-            character.IsManakete = Model.Character.IsCorrin(character.CharacterID) ||
-                ((flags[2] & 0x80) == 0x80);
-            character.IsBeast = Model.Character.IsBeastCharacter(character.CharacterID) ||
-                (flags[3] & 0x01) == 0x01;
-            character.CanUseDragonVein = Model.Character.IsRoyal(character.CharacterID) ||
-                ((flags[4] & 0x08) == 0x08);
+            chunk = new byte[Model.Character.RawBlock2Length];
+            br.Read(chunk, 0, Model.Character.RawBlock2Length);
+            character.RawBlock2 = chunk;
 
-            // Some bytes
-            chunk = new byte[2];
-            br.Read(chunk, 0, 2);
-            character.UnknownBytesBeforeStatBytes1 = chunk;
+            chunk = new byte[Model.Character.RawLearnedSkillsLength];
+            br.Read(chunk, 0, Model.Character.RawLearnedSkillsLength);
+            character.RawLearnedSkills = chunk;
 
-            // Some bytes
-            chunk = new byte[12];
-            br.Read(chunk, 0, 12);
-            character.UnknownBytesBeforeStatBytes2 = chunk;
+            var depLength = (character.IsDeployed ? Model.Character.RawDeployedUnitInfoLengthIfDeployed : Model.Character.RawDeployedUnitInfoLengthIfNotDeployed);
+            chunk = new byte[depLength];
+            br.Read(chunk, 0, depLength);
+            character.RawDeployedUnitInfo = chunk;
 
-            // Stat bytes 1
-            chunk = new byte[8];
-            br.Read(chunk, 0, 8);
-            character.StatBytes1 = (sbyte[])(Array)chunk;
+            chunk = new byte[Model.Character.RawBlock3Length];
+            br.Read(chunk, 0, Model.Character.RawBlock3Length);
+            character.RawBlock3 = chunk;
 
-            // Statue bonuses
-            chunk = new byte[8];
-            br.Read(chunk, 0, 8);
-            character.StatueBonuses = chunk;
+            chunk = new byte[0x01];
+            br.Read(chunk, 0, 0x01);
+            character.RawEndBlockType = chunk.First();
 
-            // Some bytes
-            chunk = new byte[8];
-            br.Read(chunk, 0, 8);
-            character.UnknownBytesBetweenStatBytes = chunk;
-
-            // Stat bytes 2
-            chunk = new byte[8];
-            br.Read(chunk, 0, 8);
-            character.StatBytes2 = (sbyte[])(Array)chunk;
-
-            // Weapon exp and HP
-            chunk = new byte[9];
-            br.Read(chunk, 0, 9);
-
-            character.WeaponExperience_Sword = chunk[0];
-            character.WeaponExperience_Lance = chunk[1];
-            character.WeaponExperience_Axe = chunk[2];
-            character.WeaponExperience_Shuriken = chunk[3];
-            character.WeaponExperience_Bow = chunk[4];
-            character.WeaponExperience_Tome = chunk[5];
-            character.WeaponExperience_Staff = chunk[6];
-            character.WeaponExperience_Stone = chunk[7];
-            character.MaximumHP = chunk[8];
-
-            // Map position (battle prep only)
-            chunk = new byte[2];
-            br.Read(chunk, 0, 2);
-            character.Position_FromLeft = chunk[0];
-            character.Position_FromTop = chunk[0];
-            character.IsDeployed = character.Position_FromLeft != 0xFF || character.Position_FromTop != 0xFF; // There might be an actual flag for this, but this works too
-
-            // Filler - FF FF
-            br.ReadBytes(2);
-
-            // Flags block (shield, dead, etc)
-            chunk = new byte[5];
-            br.Read(chunk, 0, 5);
-
-            character.IsDead = chunk[0] == 0x18; // Scarlet
-            character.IsEinherjar = (chunk[3] & 0x08) == 0x08;
-            //character.IsEinherjar = chunk[1] == 0x01; // Quatro, generic einherjar
-            //character.IsRecruited = chunk[3] == 0x30; // Captured bosses
-            //character.IsRecruited = chunk[3] == 0x18; // Quatro, generic einherjar
-            //character.IsRecruited = chunk[3] == 0x38; // Named einherjars (Niles, etc)
-            character.IsRecruited = (chunk[3] & 0x10) == 0x10;
-
-            // Filler - 00 00 00 FF FF 00
-            br.ReadBytes(6);
-
-            // TODO
-            br.ReadBytes(2);
-
-            // Skills
-            chunk = new byte[10];
-            br.Read(chunk, 0, 10);
-
-            character.EquippedSkill_1 = (Enums.Skill)chunk[0];
-            character.EquippedSkill_2 = (Enums.Skill)chunk[2];
-            character.EquippedSkill_3 = (Enums.Skill)chunk[4];
-            character.EquippedSkill_4 = (Enums.Skill)chunk[6];
-            character.EquippedSkill_5 = (Enums.Skill)chunk[8];
-
-            // Inventory
-            br.ReadBytes(1);
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.Item_1 = new InventoryItem(chunk);
-            br.ReadBytes(1);
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.Item_2 = new InventoryItem(chunk);
-            br.ReadBytes(1);
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.Item_3 = new InventoryItem(chunk);
-            br.ReadBytes(1);
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.Item_4 = new InventoryItem(chunk);
-            br.ReadBytes(1);
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.Item_5 = new InventoryItem(chunk);
-
-            // Supports
-            byte supportCount = br.ReadByte();
-            if (supportCount > 0)
-            {
-                chunk = new byte[supportCount];
-                br.Read(chunk, 0, supportCount);
-                character.MainSupports = chunk;
-            }
-
-            // TODO
-            br.ReadBytes(7);
-
-            // Boots
-            character.Boots = br.ReadByte();
-
-            // TODO
-            br.ReadBytes(9);
-
-            // DLC class flags
-            chunk = new byte[2];
-            br.Read(chunk, 0, 2);
-            character.DLCClassFlags = chunk;
-
-            // Hair color
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.HairColor = chunk;
-
-            // TODO
-            br.ReadBytes(47);
-
-            // Learned skills
-            chunk = new byte[20];
-            br.Read(chunk, 0, 20);
-
-            character.LearnedSkills = new LearnedSkills(chunk);
-
-            // Extra data on deployed characters in battle prep saves.
-            // Might contain debuffs, status effects, and other battle-specific status info
-            // This is what it looks like in my "030_Chapter1" save:
-            // 00 00 00 00 00 FF FF 00 00 00 00 00 00 00 FF FF FF FF 00 00 00 00 FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF FF
-            if (character.IsDeployed)
-            {
-                br.ReadBytes(54);
-            }
-
-            // TODO (this is the 02 that comes after the learned skills block)
-            br.ReadBytes(1);
-
-            // TODO
-            br.ReadBytes(4);
-
-            // Accessories
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-
-            character.Headwear = (Enums.Headwear)chunk[0];
-            character.Facewear = (Enums.Facewear)chunk[1];
-            character.Armwear = (Enums.Armwear)chunk[2];
-            character.Underwear = (Enums.Underwear)chunk[3];
-
-            // TODO
-            br.ReadBytes(1);
-
-            // Battles and Victories
-            chunk = new byte[4];
-            br.Read(chunk, 0, 4);
-            character.BattleCount = (ushort)((chunk[1] << 8) | chunk[0]);
-            character.VictoryCount = (ushort)((chunk[3] << 8) | chunk[2]);
-
-            // TODO
-            br.ReadBytes(5);
-
-            // Determine end block size
-            int endBlockSize;
-            byte endByte = br.ReadByte();
-            switch (endByte)
-            {
-                case 0x04:
-                    endBlockSize = 44;
-                    break;
-                case 0x01:
-                    endBlockSize = 42;
-                    break;
-                default:
-                    endBlockSize = 0;
-                    break;
-            }
-
-            // TODO
-            br.ReadBytes(endBlockSize);
+            chunk = new byte[character.GetRawEndBlockSize()];
+            br.Read(chunk, 0, character.GetRawEndBlockSize());
+            character.RawEndBlock = chunk;
 
             _characters.Add(character);
         }
 
         private void WriteCharacters(BinaryWriter bw)
         {
-            foreach (var character in _characters)
+            // TINU
+            bw.BaseStream.Seek(4, SeekOrigin.Current);
+
+            // 01
+            bw.BaseStream.Seek(1, SeekOrigin.Current);
+
+            var deployedCharacters = _characters.Where((x) => !x.IsAbsent && x.IsDeployed).ToList();
+            if (deployedCharacters.Count > 0)
             {
-                WriteCurrentCharacter(bw, character);
+                bw.Write((byte)0x00);
+                bw.Write((byte)deployedCharacters.Count);
+                foreach (var character in deployedCharacters)
+                {
+                    WriteCurrentCharacter(bw, character);
+                }
             }
+
+            var livingCharacters = _characters.Where((x) => !x.IsAbsent && !x.IsDeployed && !x.IsDead).ToList();
+            if (livingCharacters.Count > 0)
+            {
+                bw.Write((byte)0x03);
+                bw.Write((byte)livingCharacters.Count);
+                foreach (var character in livingCharacters)
+                {
+                    WriteCurrentCharacter(bw, character);
+                }
+            }
+
+            var absentCharacters = _characters.Where((x) => x.IsAbsent).ToList();
+            if (absentCharacters.Count > 0)
+            {
+                bw.Write((byte)0x05);
+                bw.Write((byte)absentCharacters.Count);
+                foreach (var character in absentCharacters)
+                {
+                    WriteCurrentCharacter(bw, character);
+                }
+            }
+
+            var deadCharacters = _characters.Where((x) => x.IsDead).ToList();
+            if (deadCharacters.Count > 0)
+            {
+                bw.Write((byte)0x06);
+                bw.Write((byte)deadCharacters.Count);
+                foreach (var character in deadCharacters)
+                {
+                    WriteCurrentCharacter(bw, character);
+                }
+            }
+
+            // End character block
+            bw.Write((byte)0xFF);
         }
 
         private void WriteCurrentCharacter(BinaryWriter bw, Model.Character character)
         {
-            byte[] chunk;
+            bw.Write(character.Raw);
+        }
 
-            bw.BaseStream.Seek(character.BinaryPosition, SeekOrigin.Begin);
+        #endregion
 
-            // TODO
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
+        #region Weapon Name IO
 
-            // Flags
-            chunk = new byte[8];
-            bw.BaseStream.Read(chunk, 0, 8);
-            if (character.IsManakete && !Model.Character.IsCorrin(character.CharacterID))
-                chunk[2] |= 0x80;
-            else
-                chunk[2] &= 0x7F;
-            if (character.IsBeast && !Model.Character.IsBeastCharacter(character.CharacterID))
-                chunk[3] |= 0x01;
-            else
-                chunk[3] &= 0xFE;
-            if (character.CanUseDragonVein && !Model.Character.IsRoyal(character.CharacterID))
-                chunk[4] |= 0x08;
-            else
-                chunk[4] &= 0xF7;
-            bw.BaseStream.Seek(-8, SeekOrigin.Current);
-            bw.BaseStream.Write(chunk, 0, 8);
+        public void ReadWeaponNameData(BinaryReader br)
+        {
+            // IFER
+            br.ReadBytes(0x04);
+        }
 
-            // Character main data
-            chunk = new byte[] {
-                character.Level,
-                character.Experience,
-                character.InternalLevel,
-                character.EternalSealsUsed,
-                (byte)((ushort)character.CharacterID & 0xFF),
-                (byte)(((ushort)character.CharacterID >> 8) & 0xFF),
-                (byte)character.ClassID,
-                character.Unknown011
-            };
-            bw.Write(chunk);
+        public void WriteWeaponNameData(BinaryWriter bw)
+        {
+            // IFER
+            bw.BaseStream.Seek(0x04, SeekOrigin.Current);
+        }
 
-            // TODO
-            bw.BaseStream.Seek(46, SeekOrigin.Current);
+        #endregion
 
-            // Weapon exp
-            chunk = new byte[] {
-                character.WeaponExperience_Sword,
-                character.WeaponExperience_Lance,
-                character.WeaponExperience_Axe,
-                character.WeaponExperience_Shuriken,
-                character.WeaponExperience_Bow,
-                character.WeaponExperience_Tome,
-                character.WeaponExperience_Staff,
-                character.WeaponExperience_Stone
-            };
-            bw.Write(chunk);
+        #region Convoy IO
 
-            // Max HP
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
+        public void ReadConvoyData(BinaryReader br)
+        {
+            // NART
+            br.ReadBytes(0x04);
+        }
 
-            // Filler - FF FF FF FF
-            bw.BaseStream.Seek(4, SeekOrigin.Current);
-
-            // Flags block (shield, dead, etc)
-            bw.BaseStream.Seek(5, SeekOrigin.Current);
-
-            // Filler - 00 00 00 FF FF 00
-            bw.BaseStream.Seek(6, SeekOrigin.Current);
-
-            // TODO
-            bw.BaseStream.Seek(2, SeekOrigin.Current);
-
-            // Skills
-            bw.BaseStream.Seek(10, SeekOrigin.Current);
-
-            // Inventory
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
-            bw.Write(character.Item_1.Raw());
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
-            bw.Write(character.Item_2.Raw());
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
-            bw.Write(character.Item_3.Raw());
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
-            bw.Write(character.Item_4.Raw());
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
-            bw.Write(character.Item_5.Raw());
-
-            // Supports
-            int supportCount = bw.BaseStream.ReadByte();
-            if (supportCount > 0)
-            {
-                bw.BaseStream.Seek(supportCount, SeekOrigin.Current);
-            }
-
-            // TODO
-            bw.BaseStream.Seek(7, SeekOrigin.Current);
-
-            // Boots
-            bw.Write(character.Boots);
-
-            // TODO
-            bw.BaseStream.Seek(9, SeekOrigin.Current);
-
-            // DLC class flags
-            bw.Write(character.DLCClassFlags);
-
-            // Hair color
-            bw.Write(character.HairColor);
-
-            // TODO
-            bw.BaseStream.Seek(47, SeekOrigin.Current);
-
-            // Learned skills
-            bw.Write(character.LearnedSkills.Bytes);
-
-            // Stuff only on deployed characters
-            if (character.IsDeployed)
-            {
-                bw.BaseStream.Seek(54, SeekOrigin.Current);
-            }
-
-            // TODO
-            bw.BaseStream.Seek(5, SeekOrigin.Current);
-
-            // Accessories
-            chunk = new byte[] {
-                (byte)character.Headwear,
-                (byte)character.Facewear,
-                (byte)character.Armwear,
-                (byte)character.Underwear
-            };
-            bw.Write(chunk);
-
-            // TODO
-            bw.BaseStream.Seek(1, SeekOrigin.Current);
-
-            // Battles and Victories
-            bw.Write(BitConverter.GetBytes(character.BattleCount));
-            bw.Write(BitConverter.GetBytes(character.VictoryCount));
-
-            // TODO
-            bw.BaseStream.Seek(5, SeekOrigin.Current);
-
-            // Determine end block size
-            int endBlockSize;
-            int endByte = bw.BaseStream.ReadByte();
-            switch (endByte)
-            {
-                case 0x04:
-                    endBlockSize = 44;
-                    break;
-                case 0x01:
-                    endBlockSize = 42;
-                    break;
-                default:
-                    endBlockSize = 0;
-                    break;
-            }
-
-            // TODO
-            bw.BaseStream.Seek(endBlockSize, SeekOrigin.Current);
+        public void WriteConvoyData(BinaryWriter bw)
+        {
+            // NART
+            bw.BaseStream.Seek(0x04, SeekOrigin.Current);
         }
 
         #endregion
@@ -749,7 +732,37 @@ namespace FEFTwiddler.Model
             DragonVeinPoint = (ushort)((chunk[1] << 8) | chunk[0]);
 
             // Stuff
-            br.ReadBytes(0x182);
+            br.ReadBytes(0x2);
+
+            // Unlocked buildings block 1? (begins with XX XX XX F1 FF)
+            br.ReadBytes(0x14);
+            chunk = new byte[0x1B];
+            br.Read(chunk, 0, 0x1B);
+            UnlockedStatues1 = chunk;
+            br.ReadBytes(0x11);
+
+            // Stuff (a bunch of 0x00s)
+            br.ReadBytes(0x40);
+
+            // Unlocked buildings block 2? (begins with XX XX XX F1 FF)
+            br.ReadBytes(0x14);
+            chunk = new byte[0x1B];
+            br.Read(chunk, 0, 0x1B);
+            UnlockedStatues2 = chunk;
+            br.ReadBytes(0x11);
+
+            // Stuff (a bunch of 0x00s)
+            br.ReadBytes(0x40);
+
+            // Unlocked buildings block 3? (begins with XX XX XX F1 FF)
+            br.ReadBytes(0x14);
+            chunk = new byte[0x1B];
+            br.Read(chunk, 0, 0x1B);
+            UnlockedStatues3 = chunk;
+            br.ReadBytes(0x11);
+
+            // Stuff (a bunch of 0x00s)
+            br.ReadBytes(0x40);
 
             // Materials
             chunk = new byte[0x16];
@@ -840,7 +853,31 @@ namespace FEFTwiddler.Model
             bw.BaseStream.Write(chunk, 0, 0x2);
 
             // Stuff
-            bw.BaseStream.Seek(0x182, SeekOrigin.Current);
+            bw.BaseStream.Seek(0x2, SeekOrigin.Current);
+
+            // Unlocked buildings block 1? (begins with XX XX XX F1 FF)
+            bw.BaseStream.Seek(0x14, SeekOrigin.Current);
+            bw.BaseStream.Write(UnlockedStatues1, 0, 0x1B);
+            bw.BaseStream.Seek(0x11, SeekOrigin.Current);
+
+            // Stuff (a bunch of 0x00s)
+            bw.BaseStream.Seek(0x40, SeekOrigin.Current);
+
+            // Unlocked buildings block 2? (begins with XX XX XX F1 FF)
+            bw.BaseStream.Seek(0x14, SeekOrigin.Current);
+            bw.BaseStream.Write(UnlockedStatues2, 0, 0x1B);
+            bw.BaseStream.Seek(0x11, SeekOrigin.Current);
+
+            // Stuff (a bunch of 0x00s)
+            bw.BaseStream.Seek(0x40, SeekOrigin.Current);
+
+            // Unlocked buildings block 3? (begins with XX XX XX F1 FF)
+            bw.BaseStream.Seek(0x14, SeekOrigin.Current);
+            bw.BaseStream.Write(UnlockedStatues3, 0, 0x1B);
+            bw.BaseStream.Seek(0x11, SeekOrigin.Current);
+
+            // Stuff (a bunch of 0x00s)
+            bw.BaseStream.Seek(0x40, SeekOrigin.Current);
 
             // Materials
             chunk = new byte[] {

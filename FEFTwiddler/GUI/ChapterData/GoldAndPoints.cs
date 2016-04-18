@@ -1,0 +1,56 @@
+﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Windows.Forms;
+
+namespace FEFTwiddler.GUI.ChapterData
+{
+    [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
+    public partial class GoldAndPoints : UserControl
+    {
+        private Model.ChapterSave _chapterSave;
+
+        public GoldAndPoints()
+        {
+            InitializeComponent();
+            InitializeControls();
+        }
+
+        public void LoadChapterSave(Model.ChapterSave chapterSave)
+        {
+            _chapterSave = chapterSave;
+            PopulateControls();
+        }
+
+        private void InitializeControls()
+        {
+        }
+
+        private void PopulateControls()
+        {
+            numGold.Value = _chapterSave.Gold;
+
+            numDragonVeinPoints.Value = _chapterSave.DragonVeinPoint / 100;
+        }
+
+        private void btnMaxGold_Click(object sender, EventArgs e)
+        {
+            numGold.Value = 999999;
+        }
+
+        private void btn99DragonVeinPoints_Click(object sender, EventArgs e)
+        {
+            numDragonVeinPoints.Value = 99;
+        }
+
+        private void numGold_ValueChanged(object sender, EventArgs e)
+        {
+            _chapterSave.Gold = (uint)(numGold.Value);
+        }
+
+        private void numDragonVeinPoints_ValueChanged(object sender, EventArgs e)
+        {
+            _chapterSave.DragonVeinPoint = (ushort)(numDragonVeinPoints.Value * 100);
+        }
+    }
+}
