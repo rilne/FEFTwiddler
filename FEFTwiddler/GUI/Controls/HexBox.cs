@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -45,6 +46,7 @@ namespace FEFTwiddler.GUI.Controls
                 maskedBox.Row = row;
                 maskedBox.Width = 380;
                 maskedBox.Mask = GetMaskedBoxPattern(bytesInRow);
+                if (maskedBox.Mask == "") maskedBox.Enabled = false;
                 maskedBox.Text = GetMaskedBoxText(row);
                 maskedBox.Font = new Font("Courier New", 10);
                 maskedBox.BorderStyle = BorderStyle.None;
@@ -95,7 +97,7 @@ namespace FEFTwiddler.GUI.Controls
             var matches = Regex.Matches(maskedBox.Text, pattern);
             if (matches.Count == 0) return; // Invalid
 
-            var rowBytes = new byte[BytesPerRow];
+            var rowBytes = new List<byte>();
             foreach (Match match in matches)
             {
                 var first = match.Groups["first"];
@@ -103,7 +105,7 @@ namespace FEFTwiddler.GUI.Controls
                 {
                     var thisByte = new byte[1];
                     thisByte.TryParseHex(cap.Value);
-                    rowBytes[0] = thisByte[0];
+                    rowBytes.Add(thisByte[0]);
                 }
 
                 var rest = match.Groups["rest"];
@@ -112,12 +114,12 @@ namespace FEFTwiddler.GUI.Controls
                 {
                     var thisByte = new byte[1];
                     thisByte.TryParseHex(cap.Value);
-                    rowBytes[i] = thisByte[0];
+                    rowBytes.Add(thisByte[0]);
                     i++;
                 }
             }
 
-            Array.Copy(rowBytes, 0, _bytes, maskedBox.Row * BytesPerRow, rowBytes.Length);
+            Array.Copy(rowBytes.ToArray(), 0, _bytes, maskedBox.Row * BytesPerRow, rowBytes.Count);
         }
     }
 }

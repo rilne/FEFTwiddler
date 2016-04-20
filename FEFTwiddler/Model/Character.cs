@@ -277,150 +277,93 @@ namespace FEFTwiddler.Model
 
         // Twelve unknown bytes (0x13 through 0x1E)
 
-        public sbyte Stat_HP_Gained
+        public Stat GainedStats
         {
-            get { return (sbyte)_rawBlock1[0x1F]; }
-            set { _rawBlock1[0x1F] = (byte)value; }
+            get
+            {
+                return new Stat
+                {
+                    HP = (sbyte)_rawBlock1[0x1F],
+                    Str = (sbyte)_rawBlock1[0x20],
+                    Mag = (sbyte)_rawBlock1[0x21],
+                    Skl = (sbyte)_rawBlock1[0x22],
+                    Spd = (sbyte)_rawBlock1[0x23],
+                    Lck = (sbyte)_rawBlock1[0x24],
+                    Def = (sbyte)_rawBlock1[0x25],
+                    Res = (sbyte)_rawBlock1[0x26]
+                };
+            }
+            set
+            {
+                _rawBlock1[0x1F] = (byte)value.HP;
+                _rawBlock1[0x20] = (byte)value.Str;
+                _rawBlock1[0x21] = (byte)value.Mag;
+                _rawBlock1[0x22] = (byte)value.Skl;
+                _rawBlock1[0x23] = (byte)value.Spd;
+                _rawBlock1[0x24] = (byte)value.Lck;
+                _rawBlock1[0x25] = (byte)value.Def;
+                _rawBlock1[0x26] = (byte)value.Res;
+            }
         }
 
-        public sbyte Stat_Str_Gained
+        public Stat StatueBonusStats
         {
-            get { return (sbyte)_rawBlock1[0x20]; }
-            set { _rawBlock1[0x20] = (byte)value; }
-        }
-
-        public sbyte Stat_Mag_Gained
-        {
-            get { return (sbyte)_rawBlock1[0x21]; }
-            set { _rawBlock1[0x21] = (byte)value; }
-        }
-
-        public sbyte Stat_Skl_Gained
-        {
-            get { return (sbyte)_rawBlock1[0x22]; }
-            set { _rawBlock1[0x22] = (byte)value; }
-        }
-
-        public sbyte Stat_Spd_Gained
-        {
-            get { return (sbyte)_rawBlock1[0x23]; }
-            set { _rawBlock1[0x23] = (byte)value; }
-        }
-
-        public sbyte Stat_Lck_Gained
-        {
-            get { return (sbyte)_rawBlock1[0x24]; }
-            set { _rawBlock1[0x24] = (byte)value; }
-        }
-
-        public sbyte Stat_Def_Gained
-        {
-            get { return (sbyte)_rawBlock1[0x25]; }
-            set { _rawBlock1[0x25] = (byte)value; }
-        }
-
-        public sbyte Stat_Res_Gained
-        {
-            get { return (sbyte)_rawBlock1[0x26]; }
-            set { _rawBlock1[0x26] = (byte)value; }
-        }
-
-        public byte Stat_HP_StatueBonus
-        {
-            get { return _rawBlock1[0x27]; }
-            set { _rawBlock1[0x27] = value; }
-        }
-
-        public byte Stat_Str_StatueBonus
-        {
-            get { return _rawBlock1[0x28]; }
-            set { _rawBlock1[0x28] = value; }
-        }
-
-        public byte Stat_Mag_StatueBonus
-        {
-            get { return _rawBlock1[0x29]; }
-            set { _rawBlock1[0x29] = value; }
-        }
-
-        public byte Stat_Skl_StatueBonus
-        {
-            get { return _rawBlock1[0x2A]; }
-            set { _rawBlock1[0x2A] = value; }
-        }
-
-        public byte Stat_Spd_StatueBonus
-        {
-            get { return _rawBlock1[0x2B]; }
-            set { _rawBlock1[0x2B] = value; }
-        }
-
-        public byte Stat_Lck_StatueBonus
-        {
-            get { return _rawBlock1[0x2C]; }
-            set { _rawBlock1[0x2C] = value; }
-        }
-
-        public byte Stat_Def_StatueBonus
-        {
-            get { return _rawBlock1[0x2D]; }
-            set { _rawBlock1[0x2D] = value; }
-        }
-
-        public byte Stat_Res_StatueBonus
-        {
-            get { return _rawBlock1[0x2E]; }
-            set { _rawBlock1[0x2E] = value; }
+            get
+            {
+                return new Stat
+                {
+                    HP = (sbyte)_rawBlock1[0x27],
+                    Str = (sbyte)_rawBlock1[0x28],
+                    Mag = (sbyte)_rawBlock1[0x29],
+                    Skl = (sbyte)_rawBlock1[0x2A],
+                    Spd = (sbyte)_rawBlock1[0x2B],
+                    Lck = (sbyte)_rawBlock1[0x2C],
+                    Def = (sbyte)_rawBlock1[0x2D],
+                    Res = (sbyte)_rawBlock1[0x2E]
+                };
+            }
+            set
+            {
+                _rawBlock1[0x27] = (byte)value.HP;
+                _rawBlock1[0x28] = (byte)value.Str;
+                _rawBlock1[0x29] = (byte)value.Mag;
+                _rawBlock1[0x2A] = (byte)value.Skl;
+                _rawBlock1[0x2B] = (byte)value.Spd;
+                _rawBlock1[0x2C] = (byte)value.Lck;
+                _rawBlock1[0x2D] = (byte)value.Def;
+                _rawBlock1[0x2E] = (byte)value.Res;
+            }
         }
 
         // Eight unknown bytes (0x2F through 0x36)
 
-        public sbyte Stat_HP_ExtraGained
+        public Stat ExtraGainedStats
         {
-            get { return (sbyte)_rawBlock1[0x37]; }
-            set { _rawBlock1[0x37] = (byte)value; }
-        }
-
-        public sbyte Stat_Str_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x38]; }
-            set { _rawBlock1[0x38] = (byte)value; }
-        }
-
-        public sbyte Stat_Mag_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x39]; }
-            set { _rawBlock1[0x39] = (byte)value; }
-        }
-
-        public sbyte Stat_Skl_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x3A]; }
-            set { _rawBlock1[0x3A] = (byte)value; }
-        }
-
-        public sbyte Stat_Spd_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x3B]; }
-            set { _rawBlock1[0x3B] = (byte)value; }
-        }
-
-        public sbyte Stat_Lck_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x3C]; }
-            set { _rawBlock1[0x3C] = (byte)value; }
-        }
-
-        public sbyte Stat_Def_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x3D]; }
-            set { _rawBlock1[0x3D] = (byte)value; }
-        }
-
-        public sbyte Stat_Res_ExtraGained
-        {
-            get { return (sbyte)_rawBlock1[0x3E]; }
-            set { _rawBlock1[0x3E] = (byte)value; }
+            get
+            {
+                return new Stat
+                {
+                    HP = (sbyte)_rawBlock1[0x37],
+                    Str = (sbyte)_rawBlock1[0x38],
+                    Mag = (sbyte)_rawBlock1[0x39],
+                    Skl = (sbyte)_rawBlock1[0x3A],
+                    Spd = (sbyte)_rawBlock1[0x3B],
+                    Lck = (sbyte)_rawBlock1[0x3C],
+                    Def = (sbyte)_rawBlock1[0x3D],
+                    Res = (sbyte)_rawBlock1[0x3E]
+                };
+            }
+            set
+            {
+                _rawBlock1[0x37] = (byte)value.HP;
+                _rawBlock1[0x38] = (byte)value.Str;
+                _rawBlock1[0x39] = (byte)value.Mag;
+                _rawBlock1[0x3A] = (byte)value.Skl;
+                _rawBlock1[0x3B] = (byte)value.Spd;
+                _rawBlock1[0x3C] = (byte)value.Lck;
+                _rawBlock1[0x3D] = (byte)value.Def;
+                _rawBlock1[0x3E] = (byte)value.Res;
+            }
         }
 
         public byte WeaponExperience_Sword
@@ -727,6 +670,34 @@ namespace FEFTwiddler.Model
             }
         }
 
+        public Enums.Stat Boon
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfCorrin(); } catch (MissingFieldException) { return Enums.Stat.None; }
+                return (Enums.Stat)_rawEndBlock[0x1A];
+            }
+            set
+            {
+                VerifyEndBlockSizeIfCorrin();
+                _rawEndBlock[0x1A] = (byte)value;
+            }
+        }
+
+        public Enums.Stat Bane
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfCorrin(); } catch (MissingFieldException) { return Enums.Stat.None; }
+                return (Enums.Stat)_rawEndBlock[0x1B];
+            }
+            set
+            {
+                VerifyEndBlockSizeIfCorrin();
+                _rawEndBlock[0x1B] = (byte)value;
+            }
+        }
+
         private void VerifyEndBlockSizeIfCorrin()
         {
             if (_rawEndBlock.Length != GetRawEndBlockSizeByType(0x04)) throw new MissingFieldException("Field does not exist in this character's end block");
@@ -736,7 +707,91 @@ namespace FEFTwiddler.Model
 
         #region End Block Properties (Child)
 
-        // It's all unknown for now. Hooray!
+        public Enums.Character FatherID
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfChild(); } catch (MissingFieldException) { return Enums.Character.None; }
+                return (Enums.Character)((_rawEndBlock[0x4] << 8) | _rawEndBlock[0x3]);
+            }
+            set
+            {
+                VerifyEndBlockSizeIfChild();
+                _rawEndBlock[0x3] = (byte)((ushort)value & 0xFF);
+                _rawEndBlock[0x4] = (byte)(((ushort)value >> 8) & 0xFF);
+            }
+        }
+
+        public Enums.Stat FatherBoon
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfChild(); } catch (MissingFieldException) { return Enums.Stat.None; }
+                return (Enums.Stat)_rawEndBlock[0x5];
+            }
+            set
+            {
+                VerifyEndBlockSizeIfChild();
+                _rawEndBlock[0x5] = (byte)value;
+            }
+        }
+
+        public Enums.Stat FatherBane
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfChild(); } catch (MissingFieldException) { return Enums.Stat.None; }
+                return (Enums.Stat)_rawEndBlock[0x6];
+            }
+            set
+            {
+                VerifyEndBlockSizeIfChild();
+                _rawEndBlock[0x6] = (byte)value;
+            }
+        }
+
+        public Enums.Character MotherID
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfChild(); } catch (MissingFieldException) { return Enums.Character.None; }
+                return (Enums.Character)((_rawEndBlock[0x12] << 8) | _rawEndBlock[0x11]);
+            }
+            set
+            {
+                VerifyEndBlockSizeIfChild();
+                _rawEndBlock[0x11] = (byte)((ushort)value & 0xFF);
+                _rawEndBlock[0x12] = (byte)(((ushort)value >> 8) & 0xFF);
+            }
+        }
+
+        public Enums.Stat MotherBoon
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfChild(); } catch (MissingFieldException) { return Enums.Stat.None; }
+                return (Enums.Stat)_rawEndBlock[0x13];
+            }
+            set
+            {
+                VerifyEndBlockSizeIfChild();
+                _rawEndBlock[0x13] = (byte)value;
+            }
+        }
+
+        public Enums.Stat MotherBane
+        {
+            get
+            {
+                try { VerifyEndBlockSizeIfChild(); } catch (MissingFieldException) { return Enums.Stat.None; }
+                return (Enums.Stat)_rawEndBlock[0x14];
+            }
+            set
+            {
+                VerifyEndBlockSizeIfChild();
+                _rawEndBlock[0x14] = (byte)value;
+            }
+        }
 
         private void VerifyEndBlockSizeIfChild()
         {
@@ -837,40 +892,211 @@ namespace FEFTwiddler.Model
 
         #endregion
 
-        #region Cheats
+        #region Skill Helpers and Cheats
+
+        public void UnequipUnlearnedSkills()
+        {
+            if (!LearnedSkills.Contains(EquippedSkill_1)) EquippedSkill_1 = Enums.Skill.None;
+            if (!LearnedSkills.Contains(EquippedSkill_2)) EquippedSkill_2 = Enums.Skill.None;
+            if (!LearnedSkills.Contains(EquippedSkill_3)) EquippedSkill_3 = Enums.Skill.None;
+            if (!LearnedSkills.Contains(EquippedSkill_4)) EquippedSkill_4 = Enums.Skill.None;
+            if (!LearnedSkills.Contains(EquippedSkill_5)) EquippedSkill_5 = Enums.Skill.None;
+
+            CollapseEquippedSkills();
+        }
+
+        /// <summary>
+        /// Shifts Nones from the middle of the skill list to the bottom
+        /// </summary>
+        public void CollapseEquippedSkills()
+        {
+            if (EquippedSkill_4 == Enums.Skill.None)
+            {
+                EquippedSkill_4 = EquippedSkill_5;
+                EquippedSkill_5 = Enums.Skill.None;
+            }
+            if (EquippedSkill_3 == Enums.Skill.None)
+            {
+                EquippedSkill_3 = EquippedSkill_4;
+                EquippedSkill_4 = EquippedSkill_5;
+                EquippedSkill_5 = Enums.Skill.None;
+            }
+            if (EquippedSkill_2 == Enums.Skill.None)
+            {
+                EquippedSkill_2 = EquippedSkill_3;
+                EquippedSkill_3 = EquippedSkill_4;
+                EquippedSkill_4 = EquippedSkill_5;
+                EquippedSkill_5 = Enums.Skill.None;
+            }
+            if (EquippedSkill_1 == Enums.Skill.None)
+            {
+                EquippedSkill_1 = EquippedSkill_2;
+                EquippedSkill_2 = EquippedSkill_3;
+                EquippedSkill_3 = EquippedSkill_4;
+                EquippedSkill_4 = EquippedSkill_5;
+                EquippedSkill_5 = Enums.Skill.None;
+            }
+        }
+
+        public void LearnNormalClassSkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsNormalClassSkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnCorrinOnlySkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsCorrinOnlySkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnAzuraOnlySkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsAzuraOnlySkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnBeastOnlySkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsKitsuneOnlySkill && x.IsWolfskinOnlySkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnKitsuneOnlySkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsKitsuneOnlySkill && !x.IsWolfskinOnlySkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnWolfskinOnlySkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsWolfskinOnlySkill && !x.IsKitsuneOnlySkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnVillagerOnlySkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsVillagerOnlySkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnPathBonusClassSkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsPathBonusClassSkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnDlcClassSkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsDlcClassSkill && !x.IsAmiiboClassSkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnAmiiboClassSkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsAmiiboClassSkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
+
+        public void LearnEnemyAndNpcSkills()
+        {
+            var learnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsEnemyAndNpcSkill);
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
+        }
 
         public void LearnAllSkills()
         {
-            // Learn the skills, but leave existing learned skills outside this range intact
-            LearnedSkills.Add(new byte[]
-            { 0xDF, 0xFF, 0x7F, 0xFB,
-              0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFE, 0xFF, 0xEF,
-              0xFF, 0xBF, 0x01, 0x00,
-              0x00, 0x00, 0x00, 0x00 });
+            var learnThese = Data.Database.Skills.GetAllLearnable();
+            foreach (var skill in learnThese) LearnedSkills.Add(skill.SkillID);
         }
 
-        public void LearnAllSkillsDLC()
+        public void UnlearnNormalClassSkills()
         {
-            // TODO: Change array to include only DLC skills
-            LearnedSkills.Add(new byte[]
-            { 0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFE, 0xFF, 0xFF,
-              0xFF, 0xFF, 0x81, 0x03,
-              0xFF, 0xFF, 0xFF, 0xFF });
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsNormalClassSkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
         }
 
-        public void LearnAllSkillsEnemy()
+        public void UnlearnCorrinOnlySkills()
         {
-            // TODO: Change array to include only enemy skills
-            LearnedSkills.Add(new byte[]
-            { 0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFF, 0xFF, 0xFF,
-              0xFF, 0xFF, 0xFF, 0xFF });
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsCorrinOnlySkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
         }
+
+        public void UnlearnAzuraOnlySkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsAzuraOnlySkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnBeastOnlySkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsKitsuneOnlySkill && x.IsWolfskinOnlySkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnKitsuneOnlySkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsKitsuneOnlySkill && !x.IsWolfskinOnlySkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnWolfskinOnlySkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsWolfskinOnlySkill && !x.IsKitsuneOnlySkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnVillagerOnlySkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsVillagerOnlySkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnPathBonusClassSkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsPathBonusClassSkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnDlcClassSkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsDlcClassSkill && !x.IsAmiiboClassSkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnAmiiboClassSkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsAmiiboClassSkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnEnemyAndNpcSkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable().Where((x) => x.IsEnemyAndNpcSkill);
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        public void UnlearnAllSkills()
+        {
+            var unlearnThese = Data.Database.Skills.GetAllLearnable();
+            foreach (var skill in unlearnThese) LearnedSkills.Remove(skill.SkillID);
+            UnequipUnlearnedSkills();
+        }
+
+        #endregion
+
+        #region Other Cheats
 
         public void MaximizeStatues()
         {
