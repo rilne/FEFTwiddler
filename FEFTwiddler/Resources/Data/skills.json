@@ -1,0 +1,2292 @@
+{
+    "0" : {
+        "bit" : "1",
+        "byte" : "0",
+        "lang" : {
+            "English" : "(None)",
+            "Japanese" : "無し"
+        },
+        "name" : "None",
+        "type" : "standard"
+    },
+    "1" : {
+        "bit" : "2",
+        "byte" : "0",
+        "lang" : {
+            "English" : "HP +5",
+            "Japanese" : "【最大ＨＰ+5】"
+        },
+        "name" : "HPPlus5",
+        "type" : "standard"
+    },
+    "2" : {
+        "bit" : "4",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Strength +2",
+            "Japanese" : "【力+2】"
+        },
+        "name" : "StrengthPlus2",
+        "type" : "standard"
+    },
+    "3" : {
+        "bit" : "8",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Magic +2",
+            "Japanese" : "【魔力+2】"
+        },
+        "name" : "MagicPlus2",
+        "type" : "standard"
+    },
+    "4" : {
+        "bit" : "16",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Skill +2",
+            "Japanese" : "【技+2】"
+        },
+        "name" : "SkillPlus2",
+        "type" : "standard"
+    },
+    "5" : {
+        "bit" : "32",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Speed +2",
+            "Japanese" : "【速さ+2】"
+        },
+        "name" : "SpeedPlus2",
+        "type" : "path"
+    },
+    "6" : {
+        "bit" : "64",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Luck +4",
+            "Japanese" : "【幸運+4】"
+        },
+        "name" : "LuckPlus4",
+        "type" : "azura"
+    },
+    "7" : {
+        "bit" : "128",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Defense +2",
+            "Japanese" : "【守備+2】"
+        },
+        "name" : "DefensePlus2",
+        "type" : "standard"
+    },
+    "8" : {
+        "bit" : "1",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Resistance +2",
+            "Japanese" : "【魔防+2】"
+        },
+        "name" : "ResistancePlus2",
+        "type" : "standard"
+    },
+    "9" : {
+        "bit" : "2",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Movement +1",
+            "Japanese" : "【移動+1】"
+        },
+        "name" : "MovementPlus1",
+        "type" : "standard"
+    },
+    "10" : {
+        "bit" : "4",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Draconic Hex",
+            "Japanese" : "【竜呪】"
+        },
+        "name" : "DraconicHex",
+        "type" : "corrin"
+    },
+    "11" : {
+        "bit" : "8",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Seal Strength",
+            "Japanese" : "【力封じ】"
+        },
+        "name" : "SealStrength",
+        "type" : "standard"
+    },
+    "12" : {
+        "bit" : "16",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Seal Magic",
+            "Japanese" : "【魔力封じ】"
+        },
+        "name" : "SealMagic",
+        "type" : "standard"
+    },
+    "13" : {
+        "bit" : "32",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Seal Speed",
+            "Japanese" : "【速さ封じ】"
+        },
+        "name" : "SealSpeed",
+        "type" : "standard"
+    },
+    "14" : {
+        "bit" : "64",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Seal Defense",
+            "Japanese" : "【守備封じ】"
+        },
+        "name" : "SealDefense",
+        "type" : "standard"
+    },
+    "15" : {
+        "bit" : "128",
+        "byte" : "1",
+        "lang" : {
+            "English" : "Seal Resistance",
+            "Japanese" : "【魔防封じ】"
+        },
+        "name" : "SealResistance",
+        "type" : "standard"
+    },
+    "16" : {
+        "bit" : "1",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Strength",
+            "Japanese" : "【力の叫び】"
+        },
+        "name" : "RallyStrength",
+        "type" : "standard"
+    },
+    "17" : {
+        "bit" : "2",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Magic",
+            "Japanese" : "【魔力の叫び】"
+        },
+        "name" : "RallyMagic",
+        "type" : "standard"
+    },
+    "18" : {
+        "bit" : "4",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Skill",
+            "Japanese" : "【技の叫び】"
+        },
+        "name" : "RallySkill",
+        "type" : "standard"
+    },
+    "19" : {
+        "bit" : "8",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Speed",
+            "Japanese" : "【速さの叫び】"
+        },
+        "name" : "RallySpeed",
+        "type" : "standard"
+    },
+    "20" : {
+        "bit" : "16",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Luck",
+            "Japanese" : "【幸運の叫び】"
+        },
+        "name" : "RallyLuck",
+        "type" : "standard"
+    },
+    "21" : {
+        "bit" : "32",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Defense",
+            "Japanese" : "【守備の叫び】"
+        },
+        "name" : "RallyDefense",
+        "type" : "standard"
+    },
+    "22" : {
+        "bit" : "64",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Resistance",
+            "Japanese" : "【魔防の叫び】"
+        },
+        "name" : "RallyResistance",
+        "type" : "standard"
+    },
+    "23" : {
+        "bit" : "128",
+        "byte" : "2",
+        "lang" : {
+            "English" : "Rally Movement",
+            "Japanese" : "【移動の叫び】"
+        },
+        "name" : "RallyMovement",
+        "type" : "path"
+    },
+    "24" : {
+        "bit" : "1",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Inspiring Song",
+            "Japanese" : "【特別な歌】"
+        },
+        "name" : "InspiringSong",
+        "type" : "azura"
+    },
+    "25" : {
+        "bit" : "2",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Lethality",
+            "Japanese" : "【滅殺】"
+        },
+        "name" : "Lethality",
+        "type" : "standard"
+    },
+    "26" : {
+        "bit" : "4",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Aether",
+            "Japanese" : "【天空】"
+        },
+        "name" : "Aether",
+        "type" : "amiibo"
+    },
+    "27" : {
+        "bit" : "8",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Astra",
+            "Japanese" : "【流星】"
+        },
+        "name" : "Astra",
+        "type" : "standard"
+    },
+    "28" : {
+        "bit" : "16",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Dragon Fang",
+            "Japanese" : "【竜穿】"
+        },
+        "name" : "DragonFang",
+        "type" : "corrin"
+    },
+    "29" : {
+        "bit" : "32",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Sol",
+            "Japanese" : "【太陽】"
+        },
+        "name" : "Sol",
+        "type" : "standard"
+    },
+    "30" : {
+        "bit" : "64",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Luna",
+            "Japanese" : "【月光】"
+        },
+        "name" : "Luna",
+        "type" : "standard"
+    },
+    "31" : {
+        "bit" : "128",
+        "byte" : "3",
+        "lang" : {
+            "English" : "Rend Heaven",
+            "Japanese" : "【破天】"
+        },
+        "name" : "RendHeaven",
+        "type" : "standard"
+    },
+    "32" : {
+        "bit" : "1",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Vengeance",
+            "Japanese" : "【復讐】"
+        },
+        "name" : "Vengeance",
+        "type" : "standard"
+    },
+    "33" : {
+        "bit" : "2",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Pavise",
+            "Japanese" : "【大盾】"
+        },
+        "name" : "Pavise",
+        "type" : "standard"
+    },
+    "34" : {
+        "bit" : "4",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Aegis",
+            "Japanese" : "【聖盾】"
+        },
+        "name" : "Aegis",
+        "type" : "standard"
+    },
+    "35" : {
+        "bit" : "8",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Dragon Ward",
+            "Japanese" : "【竜盾】"
+        },
+        "name" : "DragonWard",
+        "type" : "corrin"
+    },
+    "36" : {
+        "bit" : "16",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Miracle",
+            "Japanese" : "【祈り】"
+        },
+        "name" : "Miracle",
+        "type" : "standard"
+    },
+    "37" : {
+        "bit" : "32",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Counter",
+            "Japanese" : "【カウンター】"
+        },
+        "name" : "Counter",
+        "type" : "standard"
+    },
+    "38" : {
+        "bit" : "64",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Countermagic",
+            "Japanese" : "【魔法カウンター】"
+        },
+        "name" : "MagicCounter",
+        "type" : "standard"
+    },
+    "39" : {
+        "bit" : "128",
+        "byte" : "4",
+        "lang" : {
+            "English" : "Vantage",
+            "Japanese" : "【待ち伏せ】"
+        },
+        "name" : "Vantage",
+        "type" : "standard"
+    },
+    "40" : {
+        "bit" : "1",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Beastbane",
+            "Japanese" : "【獣特効】"
+        },
+        "name" : "Beastbane",
+        "type" : "shifter"
+    },
+    "41" : {
+        "bit" : "2",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Golembane",
+            "Japanese" : "【人形崩し】"
+        },
+        "name" : "Golembane",
+        "type" : "standard"
+    },
+    "42" : {
+        "bit" : "4",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Nohrian Trust",
+            "Japanese" : "【暗夜】"
+        },
+        "name" : "NohrianTrust",
+        "type" : "corrin"
+    },
+    "43" : {
+        "bit" : "8",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Hoshidan Unity",
+            "Japanese" : "【白夜】"
+        },
+        "name" : "HoshidanUnity",
+        "type" : "corrin"
+    },
+    "44" : {
+        "bit" : "16",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Shelter",
+            "Japanese" : "【救出】"
+        },
+        "name" : "Shelter",
+        "type" : "standard"
+    },
+    "45" : {
+        "bit" : "32",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Shove",
+            "Japanese" : "【体当たり】"
+        },
+        "name" : "Shove",
+        "type" : "standard"
+    },
+    "46" : {
+        "bit" : "64",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Lunge",
+            "Japanese" : "【切り込み】"
+        },
+        "name" : "Lunge",
+        "type" : "standard"
+    },
+    "47" : {
+        "bit" : "128",
+        "byte" : "5",
+        "lang" : {
+            "English" : "Swap",
+            "Japanese" : "【入れ替え】"
+        },
+        "name" : "Swap",
+        "type" : "standard"
+    },
+    "48" : {
+        "bit" : "1",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Replicate",
+            "Japanese" : "【写し身人形】"
+        },
+        "name" : "Replicate",
+        "type" : "standard"
+    },
+    "49" : {
+        "bit" : "2",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Quick Draw",
+            "Japanese" : "【先手必勝】"
+        },
+        "name" : "QuickDraw",
+        "type" : "standard"
+    },
+    "50" : {
+        "bit" : "4",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Strong Riposte",
+            "Japanese" : "【後手不敗】"
+        },
+        "name" : "StrongRiposte",
+        "type" : "standard"
+    },
+    "51" : {
+        "bit" : "8",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Elbow Room",
+            "Japanese" : "【広所突撃】"
+        },
+        "name" : "ElbowRoom",
+        "type" : "standard"
+    },
+    "52" : {
+        "bit" : "16",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Natural Cover",
+            "Japanese" : "【閉所防御】"
+        },
+        "name" : "NaturalCover",
+        "type" : "standard"
+    },
+    "53" : {
+        "bit" : "32",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Evenhanded",
+            "Japanese" : "【偶像の幻】"
+        },
+        "name" : "Evenhanded",
+        "type" : "kitsune"
+    },
+    "54" : {
+        "bit" : "64",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Odd Shaped",
+            "Japanese" : "【奇襲の牙】"
+        },
+        "name" : "OddShaped",
+        "type" : "wolfskin"
+    },
+    "55" : {
+        "bit" : "128",
+        "byte" : "6",
+        "lang" : {
+            "English" : "Life and Death",
+            "Japanese" : "【死線】"
+        },
+        "name" : "LifeAndDeath",
+        "type" : "standard"
+    },
+    "56" : {
+        "bit" : "1",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Spendthrift",
+            "Japanese" : "【お大尽】"
+        },
+        "name" : "Spendthrift",
+        "type" : "standard"
+    },
+    "57" : {
+        "bit" : "2",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Duelist's Blow",
+            "Japanese" : "【清流の一撃】"
+        },
+        "name" : "DuelistsBlow",
+        "type" : "standard"
+    },
+    "58" : {
+        "bit" : "4",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Darting Blow",
+            "Japanese" : "【飛燕の一撃】"
+        },
+        "name" : "DartingBlow",
+        "type" : "standard"
+    },
+    "59" : {
+        "bit" : "8",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Death Blow",
+            "Japanese" : "【鬼神の一撃】"
+        },
+        "name" : "DeathBlow",
+        "type" : "standard"
+    },
+    "60" : {
+        "bit" : "16",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Certain Blow",
+            "Japanese" : "【凶鳥の一撃】"
+        },
+        "name" : "CertainBlow",
+        "type" : "standard"
+    },
+    "61" : {
+        "bit" : "32",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Armored Blow",
+            "Japanese" : "【金剛の一撃】"
+        },
+        "name" : "ArmoredBlow",
+        "type" : "standard"
+    },
+    "62" : {
+        "bit" : "64",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Warding Blow",
+            "Japanese" : "【明鏡の一撃】"
+        },
+        "name" : "WardingBlow",
+        "type" : "standard"
+    },
+    "63" : {
+        "bit" : "128",
+        "byte" : "7",
+        "lang" : {
+            "English" : "Trample",
+            "Japanese" : "【見下す者】"
+        },
+        "name" : "Trample",
+        "type" : "standard"
+    },
+    "64" : {
+        "bit" : "1",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Wary Fighter",
+            "Japanese" : "【守備隊形】"
+        },
+        "name" : "WaryFighter",
+        "type" : "standard"
+    },
+    "65" : {
+        "bit" : "2",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Swordfaire",
+            "Japanese" : "【剣の達人】"
+        },
+        "name" : "Swordfaire",
+        "type" : "standard"
+    },
+    "66" : {
+        "bit" : "4",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Lancefaire",
+            "Japanese" : "【槍の達人】"
+        },
+        "name" : "Lancefaire",
+        "type" : "standard"
+    },
+    "67" : {
+        "bit" : "8",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Axefaire",
+            "Japanese" : "【斧の達人】"
+        },
+        "name" : "Axefaire",
+        "type" : "standard"
+    },
+    "68" : {
+        "bit" : "16",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Shurikenfaire",
+            "Japanese" : "【暗器の達人】"
+        },
+        "name" : "Shurikenfaire",
+        "type" : "standard"
+    },
+    "69" : {
+        "bit" : "32",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Bowfaire",
+            "Japanese" : "【弓の達人】"
+        },
+        "name" : "Bowfaire",
+        "type" : "standard"
+    },
+    "70" : {
+        "bit" : "64",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Tomefaire",
+            "Japanese" : "【魔の達人】"
+        },
+        "name" : "Tomefaire",
+        "type" : "standard"
+    },
+    "71" : {
+        "bit" : "128",
+        "byte" : "8",
+        "lang" : {
+            "English" : "Defender",
+            "Japanese" : "【守り手】"
+        },
+        "name" : "Defender",
+        "type" : "standard"
+    },
+    "72" : {
+        "bit" : "1",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Charm",
+            "Japanese" : "【カリスマ】"
+        },
+        "name" : "Charm",
+        "type" : "amiibo"
+    },
+    "73" : {
+        "bit" : "2",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Gentilhomme",
+            "Japanese" : "【名家の令息】"
+        },
+        "name" : "Gentilhomme",
+        "type" : "standard"
+    },
+    "74" : {
+        "bit" : "4",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Demoiselle",
+            "Japanese" : "【深窓の令嬢】"
+        },
+        "name" : "Demoiselle",
+        "type" : "standard"
+    },
+    "75" : {
+        "bit" : "8",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Inspiration",
+            "Japanese" : "【戦闘指揮】"
+        },
+        "name" : "Inspiration",
+        "type" : "standard"
+    },
+    "76" : {
+        "bit" : "16",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Malefic Aura",
+            "Japanese" : "【魔の風】"
+        },
+        "name" : "MaleficAura",
+        "type" : "standard"
+    },
+    "77" : {
+        "bit" : "32",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Voice of Peace",
+            "Japanese" : "【平和の声】"
+        },
+        "name" : "VoiceOfPeace",
+        "type" : "azura"
+    },
+    "78" : {
+        "bit" : "64",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Foreign Princess",
+            "Japanese" : "【異邦の王女】"
+        },
+        "name" : "ForeignPrincess",
+        "type" : "azura"
+    },
+    "79" : {
+        "bit" : "128",
+        "byte" : "9",
+        "lang" : {
+            "English" : "Swordbreaker",
+            "Japanese" : "【剣殺し】"
+        },
+        "name" : "Swordbreaker",
+        "type" : "standard"
+    },
+    "80" : {
+        "bit" : "1",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Lancebreaker",
+            "Japanese" : "【槍殺し】"
+        },
+        "name" : "Lancebreaker",
+        "type" : "standard"
+    },
+    "81" : {
+        "bit" : "2",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Axebreaker",
+            "Japanese" : "【斧殺し】"
+        },
+        "name" : "Axebreaker",
+        "type" : "standard"
+    },
+    "82" : {
+        "bit" : "4",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Shurikenbreaker",
+            "Japanese" : "【暗器殺し】"
+        },
+        "name" : "Shurikenbreaker",
+        "type" : "standard"
+    },
+    "83" : {
+        "bit" : "8",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Bowbreaker",
+            "Japanese" : "【弓殺し】"
+        },
+        "name" : "Bowbreaker",
+        "type" : "standard"
+    },
+    "84" : {
+        "bit" : "16",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Tomebreaker",
+            "Japanese" : "【魔殺し】"
+        },
+        "name" : "Tomebreaker",
+        "type" : "standard"
+    },
+    "85" : {
+        "bit" : "32",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Gamble",
+            "Japanese" : "【大振り】"
+        },
+        "name" : "Gamble",
+        "type" : "standard"
+    },
+    "86" : {
+        "bit" : "64",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Underdog",
+            "Japanese" : "【下剋上】"
+        },
+        "name" : "Underdog",
+        "type" : "villager"
+    },
+    "87" : {
+        "bit" : "128",
+        "byte" : "10",
+        "lang" : {
+            "English" : "Lucky Seven",
+            "Japanese" : "【ラッキー7】"
+        },
+        "name" : "Lucky7",
+        "type" : "standard"
+    },
+    "88" : {
+        "bit" : "1",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Air Superiority",
+            "Japanese" : "【天翔ける】"
+        },
+        "name" : "AirSuperiority",
+        "type" : "standard"
+    },
+    "89" : {
+        "bit" : "2",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Heartseeker",
+            "Japanese" : "【呪縛】"
+        },
+        "name" : "Heartseeker",
+        "type" : "standard"
+    },
+    "90" : {
+        "bit" : "4",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Quixotic",
+            "Japanese" : "【傾奇者】"
+        },
+        "name" : "Quixotic",
+        "type" : "standard"
+    },
+    "91" : {
+        "bit" : "8",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Good Fortune",
+            "Japanese" : "【しぶとい心】"
+        },
+        "name" : "GoodFortune",
+        "type" : "standard"
+    },
+    "92" : {
+        "bit" : "16",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Relief",
+            "Japanese" : "【リフレッシュ】"
+        },
+        "name" : "Relief",
+        "type" : "path"
+    },
+    "93" : {
+        "bit" : "32",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Camaraderie",
+            "Japanese" : "【和の心】"
+        },
+        "name" : "Camaraderie",
+        "type" : "standard"
+    },
+    "94" : {
+        "bit" : "64",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Renewal",
+            "Japanese" : "【回復】"
+        },
+        "name" : "Renewal",
+        "type" : "standard"
+    },
+    "95" : {
+        "bit" : "128",
+        "byte" : "11",
+        "lang" : {
+            "English" : "Even Better",
+            "Japanese" : "【偶然のまどろみ】"
+        },
+        "name" : "EvenBetter",
+        "type" : "kitsune"
+    },
+    "96" : {
+        "bit" : "1",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Better Odds",
+            "Japanese" : "【奇妙な鳴き声】"
+        },
+        "name" : "BetterOdds",
+        "type" : "wolfskin"
+    },
+    "97" : {
+        "bit" : "2",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Amaterasu",
+            "Japanese" : "【天照らす】"
+        },
+        "name" : "Amaterasu",
+        "type" : "standard"
+    },
+    "98" : {
+        "bit" : "4",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Lifetaker",
+            "Japanese" : "【生命吸収】"
+        },
+        "name" : "Lifetaker",
+        "type" : "standard"
+    },
+    "99" : {
+        "bit" : "8",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Potent Potion",
+            "Japanese" : "【よく効く薬】"
+        },
+        "name" : "PotentPotion",
+        "type" : "standard"
+    },
+    "100" : {
+        "bit" : "16",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Live to Serve",
+            "Japanese" : "【ご奉仕の喜び】"
+        },
+        "name" : "LiveToServe",
+        "type" : "standard"
+    },
+    "101" : {
+        "bit" : "32",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Poison Strike",
+            "Japanese" : "【蛇毒】"
+        },
+        "name" : "PoisonStrike",
+        "type" : "standard"
+    },
+    "102" : {
+        "bit" : "64",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Savage Blow",
+            "Japanese" : "【死の吐息】"
+        },
+        "name" : "SavageBlow",
+        "type" : "standard"
+    },
+    "103" : {
+        "bit" : "128",
+        "byte" : "12",
+        "lang" : {
+            "English" : "Grisly Wound",
+            "Japanese" : "【四牙】"
+        },
+        "name" : "GrislyWound",
+        "type" : "shifter"
+    },
+    "104" : {
+        "bit" : "1",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Salvage Blow",
+            "Japanese" : "【匠の技】"
+        },
+        "name" : "SalvageBlow",
+        "type" : "standard"
+    },
+    "105" : {
+        "bit" : "2",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Profiteer",
+            "Japanese" : "【左うちわ】"
+        },
+        "name" : "Profiteer",
+        "type" : "standard"
+    },
+    "106" : {
+        "bit" : "4",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Nobility",
+            "Japanese" : "【高貴なる血統】"
+        },
+        "name" : "Nobility",
+        "type" : "corrin"
+    },
+    "107" : {
+        "bit" : "8",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Future Sight",
+            "Japanese" : "【おみくじ】"
+        },
+        "name" : "FutureSight",
+        "type" : "standard"
+    },
+    "108" : {
+        "bit" : "16",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Aptitude",
+            "Japanese" : "【良成長】"
+        },
+        "name" : "Aptitude",
+        "type" : "villager"
+    },
+    "109" : {
+        "bit" : "32",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Quick Salve",
+            "Japanese" : "【常備薬】"
+        },
+        "name" : "QuickSalve",
+        "type" : "standard"
+    },
+    "110" : {
+        "bit" : "64",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Galeforce",
+            "Japanese" : "【疾風迅雷】"
+        },
+        "name" : "Galeforce",
+        "type" : "path"
+    },
+    "111" : {
+        "bit" : "128",
+        "byte" : "13",
+        "lang" : {
+            "English" : "Pass",
+            "Japanese" : "【すり抜け】"
+        },
+        "name" : "Pass",
+        "type" : "standard"
+    },
+    "112" : {
+        "bit" : "1",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Locktouch",
+            "Japanese" : "【鍵開け】"
+        },
+        "name" : "Locktouch",
+        "type" : "standard"
+    },
+    "113" : {
+        "bit" : "2",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Brynhildr",
+            "Japanese" : "【ブリュンヒルデ】"
+        },
+        "name" : "Brynhildr",
+        "type" : "item"
+    },
+    "114" : {
+        "bit" : "4",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Dragonskin",
+            "Japanese" : "【竜鱗】"
+        },
+        "name" : "Dragonskin",
+        "type" : "enemy"
+    },
+    "115" : {
+        "bit" : "8",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Divine Shield",
+            "Japanese" : "【神盾】"
+        },
+        "name" : "DivineShield",
+        "type" : "enemy"
+    },
+    "116" : {
+        "bit" : "16",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Hit/Avo +10",
+            "Japanese" : "【命中回避+10】"
+        },
+        "name" : "HitAvoidPlus10",
+        "type" : "enemy"
+    },
+    "117" : {
+        "bit" : "32",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Hit/Avo +20",
+            "Japanese" : "【命中回避+20】"
+        },
+        "name" : "HitAvoidPlus20",
+        "type" : "enemy"
+    },
+    "118" : {
+        "bit" : "64",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Resist Status",
+            "Japanese" : "【状態異常耐性】"
+        },
+        "name" : "ResistStatus",
+        "type" : "enemy"
+    },
+    "119" : {
+        "bit" : "128",
+        "byte" : "14",
+        "lang" : {
+            "English" : "Immune Status",
+            "Japanese" : "【状態異常無効】"
+        },
+        "name" : "ImmuneStatus",
+        "type" : "enemy"
+    },
+    "120" : {
+        "bit" : "1",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Bold Stance",
+            "Japanese" : "【攻防一体の陣】"
+        },
+        "name" : "BoldStance",
+        "type" : "dlc"
+    },
+    "121" : {
+        "bit" : "2",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Point Blank",
+            "Japanese" : "【近接射撃】"
+        },
+        "name" : "PointBlank",
+        "type" : "dlc"
+    },
+    "122" : {
+        "bit" : "4",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Winged Shield",
+            "Japanese" : "【翼盾】"
+        },
+        "name" : "WingedShield",
+        "type" : "dlc"
+    },
+    "123" : {
+        "bit" : "8",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Void Curse",
+            "Japanese" : "【虚無の呪い】"
+        },
+        "name" : "VoidCurse",
+        "type" : "enemy"
+    },
+    "124" : {
+        "bit" : "16",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Self-Destruct",
+            "Japanese" : "【自壊】"
+        },
+        "name" : "SelfDestruct",
+        "type" : "enemy"
+    },
+    "125" : {
+        "bit" : "32",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Staff Savant",
+            "Japanese" : "【無限の杖】"
+        },
+        "name" : "StaffSavant",
+        "type" : "enemy"
+    },
+    "126" : {
+        "bit" : "64",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Immobilize",
+            "Japanese" : "【凍結】"
+        },
+        "name" : "Immobilize",
+        "type" : "enemy"
+    },
+    "127" : {
+        "bit" : "128",
+        "byte" : "15",
+        "lang" : {
+            "English" : "Inevitable End",
+            "Japanese" : "【負の連鎖】"
+        },
+        "name" : "InevitableEnd",
+        "type" : "enemy"
+    },
+    "128" : {
+        "bit" : "1",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Even Keel",
+            "Japanese" : "【偶人の空蝉】"
+        },
+        "name" : "EvenKeel",
+        "type" : "path"
+    },
+    "129" : {
+        "bit" : "2",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Iron Will",
+            "Japanese" : "【精神統一】"
+        },
+        "name" : "IronWill",
+        "type" : "path"
+    },
+    "130" : {
+        "bit" : "4",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Clarity",
+            "Japanese" : "【心頭滅却】"
+        },
+        "name" : "Clarity",
+        "type" : "path"
+    },
+    "131" : {
+        "bit" : "8",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Aggressor",
+            "Japanese" : "【居合一閃】"
+        },
+        "name" : "Aggressor",
+        "type" : "path"
+    },
+    "132" : {
+        "bit" : "16",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Dual Striker",
+            "Japanese" : "【攻陣＋】"
+        },
+        "name" : "DualStriker",
+        "type" : "amiibo"
+    },
+    "133" : {
+        "bit" : "32",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Awakening",
+            "Japanese" : "【覚醒】"
+        },
+        "name" : "Awakening",
+        "type" : "amiibo"
+    },
+    "134" : {
+        "bit" : "64",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Tactical Advice",
+            "Japanese" : "【戦術指南】"
+        },
+        "name" : "TacticalAdvice",
+        "type" : "amiibo"
+    },
+    "135" : {
+        "bit" : "128",
+        "byte" : "16",
+        "lang" : {
+            "English" : "Solidarity",
+            "Japanese" : "【方陣】"
+        },
+        "name" : "Solidarity",
+        "type" : "amiibo"
+    },
+    "136" : {
+        "bit" : "1",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Ignis",
+            "Japanese" : "【華炎】"
+        },
+        "name" : "Ignis",
+        "type" : "amiibo"
+    },
+    "137" : {
+        "bit" : "2",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Rally Spectrum",
+            "Japanese" : "【七色の叫び】"
+        },
+        "name" : "RallySpectrum",
+        "type" : "amiibo"
+    },
+    "138" : {
+        "bit" : "4",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Paragon",
+            "Japanese" : "【エリート】"
+        },
+        "name" : "Paragon",
+        "type" : "dlc"
+    },
+    "139" : {
+        "bit" : "8",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Armor Shield",
+            "Japanese" : "【鎧盾】"
+        },
+        "name" : "BeastShield",
+        "type" : "dlc"
+    },
+    "140" : {
+        "bit" : "16",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Beast Shield",
+            "Japanese" : "【獣盾】"
+        },
+        "name" : "ArmorShield",
+        "type" : "dlc"
+    },
+    "141" : {
+        "bit" : "32",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Shadowgift",
+            "Japanese" : "【暗闇の加護】"
+        },
+        "name" : "Shadowgift",
+        "type" : "dlc"
+    },
+    "142" : {
+        "bit" : "64",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Strengthtaker",
+            "Japanese" : "【力の吸収】"
+        },
+        "name" : "StrengthTaker",
+        "type" : "amiibo"
+    },
+    "143" : {
+        "bit" : "128",
+        "byte" : "17",
+        "lang" : {
+            "English" : "Magictaker",
+            "Japanese" : "【魔力の吸収】"
+        },
+        "name" : "MagicTaker",
+        "type" : "dlc"
+    },
+    "144" : {
+        "bit" : "1",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Skilltaker",
+            "Japanese" : "【技の吸収】"
+        },
+        "name" : "SkillTaker",
+        "type" : "dlc"
+    },
+    "145" : {
+        "bit" : "2",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Speedtaker",
+            "Japanese" : "【速さの吸収】"
+        },
+        "name" : "SpeedTaker",
+        "type" : "amiibo"
+    },
+    "146" : {
+        "bit" : "4",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Lucktaker",
+            "Japanese" : "【幸運の吸収】"
+        },
+        "name" : "LuckTaker",
+        "type" : "dlc"
+    },
+    "147" : {
+        "bit" : "8",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Defensetaker",
+            "Japanese" : "【守備の吸収】"
+        },
+        "name" : "DefenseTaker",
+        "type" : "dlc"
+    },
+    "148" : {
+        "bit" : "16",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Resistancetaker",
+            "Japanese" : "【魔防の吸収】"
+        },
+        "name" : "ResistanceTaker",
+        "type" : "dlc"
+    },
+    "149" : {
+        "bit" : "32",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Survey",
+            "Japanese" : "【測量術】"
+        },
+        "name" : "Survey",
+        "type" : "dlc"
+    },
+    "150" : {
+        "bit" : "64",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Opportunity Shot",
+            "Japanese" : "【自動砲台】"
+        },
+        "name" : "OpportunityShot",
+        "type" : "dlc"
+    },
+    "151" : {
+        "bit" : "128",
+        "byte" : "18",
+        "lang" : {
+            "English" : "Rifled Barrel",
+            "Japanese" : "【砲身改造】"
+        },
+        "name" : "RifledBarrel",
+        "type" : "dlc"
+    },
+    "152" : {
+        "bit" : "1",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Surefooted",
+            "Japanese" : "【悪路踏破】"
+        },
+        "name" : "Surefooted",
+        "type" : "dlc"
+    },
+    "153" : {
+        "bit" : "2",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Witch's Brew",
+            "Japanese" : "【魔女の大釜】"
+        },
+        "name" : "WitchsBrew",
+        "type" : "dlc"
+    },
+    "154" : {
+        "bit" : "4",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Warp",
+            "Japanese" : "【ワープ】"
+        },
+        "name" : "Warp",
+        "type" : "dlc"
+    },
+    "155" : {
+        "bit" : "8",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Toxic Brew",
+            "Japanese" : "【魔女の毒薬】"
+        },
+        "name" : "ToxicBrew",
+        "type" : "dlc"
+    },
+    "156" : {
+        "bit" : "16",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Dancing Blade",
+            "Japanese" : "【柔剣】"
+        },
+        "name" : "DancingBlade",
+        "type" : "amiibo"
+    },
+    "157" : {
+        "bit" : "32",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Dual Guardsman",
+            "Japanese" : "【防陣＋】"
+        },
+        "name" : "DualGuardsman",
+        "type" : "amiibo"
+    },
+    "158" : {
+        "bit" : "64",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Heavy Blade",
+            "Japanese" : "【剛剣】"
+        },
+        "name" : "HeavyBlade",
+        "type" : "amiibo"
+    },
+    "159" : {
+        "bit" : "128",
+        "byte" : "19",
+        "lang" : {
+            "English" : "Veteran Intuition",
+            "Japanese" : "【歴戦の勘】"
+        },
+        "name" : "VeteranIntuition",
+        "type" : "amiibo"
+    },
+    "160" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Supportive",
+            "Japanese" : "【不思議な魅力】"
+        },
+        "name" : "Supportive",
+        "type" : "personal"
+    },
+    "161" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Forceful Partner",
+            "Japanese" : "【絶対進攻】"
+        },
+        "name" : "ForcefulPartner",
+        "type" : "personal"
+    },
+    "162" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Devoted Partner",
+            "Japanese" : "【絶対援護】"
+        },
+        "name" : "DevotedPartner",
+        "type" : "personal"
+    },
+    "163" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Evasive Partner",
+            "Japanese" : "【絶対死守】"
+        },
+        "name" : "EvasivePartner",
+        "type" : "personal"
+    },
+    "164" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fiery Blood",
+            "Japanese" : "【炎の血】"
+        },
+        "name" : "FieryBlood",
+        "type" : "personal"
+    },
+    "165" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Miraculous Save",
+            "Japanese" : "【絆の祈り】"
+        },
+        "name" : "MiraculousSave",
+        "type" : "personal"
+    },
+    "166" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Healing Descant",
+            "Japanese" : "【癒しの声】"
+        },
+        "name" : "HealingDescant",
+        "type" : "personal"
+    },
+    "167" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Quiet Strength",
+            "Japanese" : "【小さな声援】"
+        },
+        "name" : "QuietStrength",
+        "type" : "personal"
+    },
+    "168" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fearsome Blow",
+            "Japanese" : "【お転婆】"
+        },
+        "name" : "FearsomeBlow",
+        "type" : "personal"
+    },
+    "169" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Perfectionist",
+            "Japanese" : "【完璧主義】"
+        },
+        "name" : "Perfectionist",
+        "type" : "personal"
+    },
+    "170" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Vow of Friendship",
+            "Japanese" : "【友情の誓い】"
+        },
+        "name" : "VowOfFriendship",
+        "type" : "personal"
+    },
+    "171" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Pyrotechnics",
+            "Japanese" : "【爆炎使い】"
+        },
+        "name" : "Pyrotechnics",
+        "type" : "personal"
+    },
+    "172" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Capture",
+            "Japanese" : "【白夜の捕縛術】"
+        },
+        "name" : "Capture",
+        "type" : "personal"
+    },
+    "173" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Rallying Cry",
+            "Japanese" : "【叱咤激励】"
+        },
+        "name" : "RallyingCry",
+        "type" : "personal"
+    },
+    "174" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Divine Retribution",
+            "Japanese" : "【天罰】"
+        },
+        "name" : "DivineRetribution",
+        "type" : "personal"
+    },
+    "175" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Optimistic",
+            "Japanese" : "【ぼんやり】"
+        },
+        "name" : "Optimistic",
+        "type" : "personal"
+    },
+    "176" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Pride",
+            "Japanese" : "【尊大】"
+        },
+        "name" : "Pride",
+        "type" : "personal"
+    },
+    "177" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Nohr Enmity",
+            "Japanese" : "【暗夜嫌い】"
+        },
+        "name" : "NohrEnmity",
+        "type" : "personal"
+    },
+    "178" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Triple Threat",
+            "Japanese" : "【悪あがき】"
+        },
+        "name" : "TripleThreat",
+        "type" : "personal"
+    },
+    "179" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Competitive",
+            "Japanese" : "【対抗意識】"
+        },
+        "name" : "Competitive",
+        "type" : "personal"
+    },
+    "180" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Shuriken Mastery",
+            "Japanese" : "【忍法車返し】"
+        },
+        "name" : "ShurikenMastery",
+        "type" : "personal"
+    },
+    "181" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Morbid Celebration",
+            "Japanese" : "【勝者の愉悦】"
+        },
+        "name" : "MorbidCelebration",
+        "type" : "personal"
+    },
+    "182" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Reciprocity",
+            "Japanese" : "【恩返し】"
+        },
+        "name" : "Reciprocity",
+        "type" : "personal"
+    },
+    "183" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Bushido",
+            "Japanese" : "【武士道】"
+        },
+        "name" : "Bushido",
+        "type" : "personal"
+    },
+    "184" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "In Extremis",
+            "Japanese" : "【勝利への執念】"
+        },
+        "name" : "InExtremis",
+        "type" : "personal"
+    },
+    "185" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Highwayman",
+            "Japanese" : "【ダーティファイト】"
+        },
+        "name" : "Highwayman",
+        "type" : "personal"
+    },
+    "186" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Lily's Poise",
+            "Japanese" : "【可憐な花】"
+        },
+        "name" : "LilysPoise",
+        "type" : "personal"
+    },
+    "187" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Misfortunate",
+            "Japanese" : "【不運の塊】"
+        },
+        "name" : "Misfortunate",
+        "type" : "personal"
+    },
+    "188" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Puissance",
+            "Japanese" : "【怪力】"
+        },
+        "name" : "Puissance",
+        "type" : "personal"
+    },
+    "189" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Aching Blood",
+            "Japanese" : "【血の疼き】"
+        },
+        "name" : "AchingBlood",
+        "type" : "personal"
+    },
+    "190" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Kidnap",
+            "Japanese" : "【暗夜の拘束術】"
+        },
+        "name" : "Kidnap",
+        "type" : "personal"
+    },
+    "191" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Countercurse",
+            "Japanese" : "【呪詛返し】"
+        },
+        "name" : "Countercurse",
+        "type" : "personal"
+    },
+    "192" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Rose's Thorns",
+            "Japanese" : "【妖艶な花】"
+        },
+        "name" : "RosesThorns",
+        "type" : "personal"
+    },
+    "193" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fierce Rival",
+            "Japanese" : "【負けん気】"
+        },
+        "name" : "FierceRival",
+        "type" : "personal"
+    },
+    "194" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Opportunist",
+            "Japanese" : "【奇襲任務】"
+        },
+        "name" : "Opportunist",
+        "type" : "personal"
+    },
+    "195" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fancy Footwork",
+            "Japanese" : "【青の踊り】"
+        },
+        "name" : "FancyFootwork",
+        "type" : "personal"
+    },
+    "196" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Bloodthirst",
+            "Japanese" : "【殺戮本能】"
+        },
+        "name" : "Bloodthirst",
+        "type" : "personal"
+    },
+    "197" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fierce Mien",
+            "Japanese" : "【強面】"
+        },
+        "name" : "FierceMien",
+        "type" : "personal"
+    },
+    "198" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Unmask",
+            "Japanese" : "【女の本性】"
+        },
+        "name" : "Unmask",
+        "type" : "personal"
+    },
+    "199" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Pragmatic",
+            "Japanese" : "【冷血】"
+        },
+        "name" : "Pragmatic",
+        "type" : "personal"
+    },
+    "200" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Collector",
+            "Japanese" : "【拾いもの】"
+        },
+        "name" : "Collector",
+        "type" : "personal"
+    },
+    "201" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Chivalry",
+            "Japanese" : "【騎士道】"
+        },
+        "name" : "Chivalry",
+        "type" : "personal"
+    },
+    "202" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Peacebringer",
+            "Japanese" : "【美しき王】"
+        },
+        "name" : "Peacebringer",
+        "type" : "personal"
+    },
+    "203" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Wind Disciple",
+            "Japanese" : "【風の血】"
+        },
+        "name" : "WindDisciple",
+        "type" : "personal"
+    },
+    "204" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Perspicacious",
+            "Japanese" : "【軍略伝授】"
+        },
+        "name" : "Perspicacious",
+        "type" : "personal"
+    },
+    "205" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Icy Blood",
+            "Japanese" : "【氷の血】"
+        },
+        "name" : "IcyBlood",
+        "type" : "personal"
+    },
+    "206" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Forager",
+            "Japanese" : "【農地の主】"
+        },
+        "name" : "Forager",
+        "type" : "personal"
+    },
+    "207" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Draconic Heir",
+            "Japanese" : "【竜の御子】"
+        },
+        "name" : "DraconicHeir",
+        "type" : "personal"
+    },
+    "208" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Born Steward",
+            "Japanese" : "【執事の嗜み】"
+        },
+        "name" : "BornSteward",
+        "type" : "personal"
+    },
+    "209" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Perfect Pitch",
+            "Japanese" : "【チューニング】"
+        },
+        "name" : "PerfectPitch",
+        "type" : "personal"
+    },
+    "210" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Mischievous",
+            "Japanese" : "【おっちょこちょい】"
+        },
+        "name" : "Mischievous",
+        "type" : "personal"
+    },
+    "211" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Lucky Charm",
+            "Japanese" : "【幸運のおまじない】"
+        },
+        "name" : "LuckyCharm",
+        "type" : "personal"
+    },
+    "212" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Noble Cause",
+            "Japanese" : "【大義の勇】"
+        },
+        "name" : "NobleCause",
+        "type" : "personal"
+    },
+    "213" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Optimist",
+            "Japanese" : "【前向き】"
+        },
+        "name" : "Optimist",
+        "type" : "personal"
+    },
+    "214" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Sweet Tooth",
+            "Japanese" : "【甘党】"
+        },
+        "name" : "SweetTooth",
+        "type" : "personal"
+    },
+    "215" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Playthings",
+            "Japanese" : "【じゃれつき】"
+        },
+        "name" : "Playthings",
+        "type" : "personal"
+    },
+    "216" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Calm",
+            "Japanese" : "【冷静沈着】"
+        },
+        "name" : "Calm",
+        "type" : "personal"
+    },
+    "217" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Haiku",
+            "Japanese" : "【五・七・五】"
+        },
+        "name" : "Haiku",
+        "type" : "personal"
+    },
+    "218" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Prodigy",
+            "Japanese" : "【天才肌】"
+        },
+        "name" : "Prodigy",
+        "type" : "personal"
+    },
+    "219" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Vendetta",
+            "Japanese" : "【執念】"
+        },
+        "name" : "Vendetta",
+        "type" : "personal"
+    },
+    "220" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Gallant",
+            "Japanese" : "【レディーファースト】"
+        },
+        "name" : "Gallant",
+        "type" : "personal"
+    },
+    "221" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Guarded Bravery",
+            "Japanese" : "【臆病】"
+        },
+        "name" : "FierceCounter",
+        "type" : "personal"
+    },
+    "222" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fierce Counter",
+            "Japanese" : "【だまし討ち】"
+        },
+        "name" : "GuardedBravery",
+        "type" : "personal"
+    },
+    "223" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Goody Basket",
+            "Japanese" : "【ひろい食い】"
+        },
+        "name" : "Scavenge",
+        "type" : "personal"
+    },
+    "224" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Fortunate Son",
+            "Japanese" : "【強運の塊】"
+        },
+        "name" : "FortunateSon",
+        "type" : "personal"
+    },
+    "225" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Bibliophile",
+            "Japanese" : "【乙女心の躍動】"
+        },
+        "name" : "Bibliophile",
+        "type" : "personal"
+    },
+    "226" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Sisterhood",
+            "Japanese" : "【女の子好き】"
+        },
+        "name" : "Sisterhood",
+        "type" : "personal"
+    },
+    "227" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Daydream",
+            "Japanese" : "【邪な空想】"
+        },
+        "name" : "Daydream",
+        "type" : "personal"
+    },
+    "228" : {
+        "bit" : "0",
+        "byte" : "0",
+        "lang" : {
+            "English" : "Make a Killing",
+            "Japanese" : "【一攫千金】"
+        },
+        "name" : "MakeAKilling",
+        "type" : "personal"
+},
+}

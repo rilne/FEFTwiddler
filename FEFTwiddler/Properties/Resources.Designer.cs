@@ -92,7 +92,8 @@ namespace FEFTwiddler.Properties {
         ///    &lt;flags canUseStones=&quot;false&quot; isCorrin=&quot;false&quot; isChild=&quot;false&quot; /&gt;
         ///  &lt;/character&gt;
         ///  &lt;character id=&quot;1&quot; name=&quot;Corrin_M&quot;&gt;
-        ///    &lt;text lang=&quot;English&quot; displayName=&quot;Corrin (M) [rest of string was truncated]&quot;;.
+        ///    &lt;text lang=&quot;English&quot; displayName=&quot;Corrin (M)&quot; /&gt;
+        ///    &lt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Data_Characters {
             get {
@@ -144,15 +145,13 @@ namespace FEFTwiddler.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;root&gt;
-        ///  &lt;skill id=&quot;0&quot; name=&quot;None&quot; enemyOnly=&quot;false&quot; dlc=&quot;false&quot; personal=&quot;false&quot; unlearnable=&quot;false&quot;&gt;
+        ///  &lt;skill id=&quot;0&quot; name=&quot;None&quot; personal=&quot;false&quot; unlearnable=&quot;false&quot;&gt;
         ///    &lt;text lang=&quot;English&quot; displayName=&quot;(None)&quot; /&gt;
         ///    &lt;text lang=&quot;Japanese&quot; displayName=&quot;無し&quot; /&gt;
         ///    &lt;learnedSkillInfo byteOffset=&quot;0&quot; bitMask=&quot;1&quot; /&gt;
+        ///    &lt;categories normalClass=&quot;true&quot; corrinOnly=&quot;false&quot; azuraOnly=&quot;false&quot; kitsuneOnly=&quot;false&quot; wolfskinOnly=&quot;false&quot; villagerOnly=&quot;false&quot; pathBonusClass=&quot;false&quot; dlcClass=&quot;false&quot; amiiboClass=&quot;false&quot; enemyAndNpc=&quot;false&quot; /&gt;
         ///  &lt;/skill&gt;
-        ///  &lt;skill id=&quot;1&quot; name=&quot;HPPlus5&quot; enemyOnly=&quot;false&quot; dlc=&quot;false&quot; personal=&quot;false&quot; unlearnable=&quot;false&quot;&gt;
-        ///    &lt;text lang=&quot;English&quot; displayName=&quot;HP +5&quot; /&gt;
-        ///    &lt;text lang=&quot;Japanese&quot; displayName=&quot;【最大ＨＰ+5】&quot; /&gt;
-        ///    &lt;learned [rest of string was truncated]&quot;;.
+        ///  &lt;skill id=&quot;1&quot; name=&quot;HP [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Data_Skills {
             get {
@@ -172,7 +171,7 @@ namespace FEFTwiddler.Properties {
         ///  &lt;stat id=&quot;1&quot; name=&quot;HP&quot;&gt;
         ///    &lt;text lang=&quot;English&quot; displayName=&quot;HP&quot; /&gt;
         ///    &lt;text lang=&quot;Japanese&quot; displayName=&quot;HP&quot; /&gt;
-        ///    &lt;boonStats hp=&quot;0&quot; str=&quot;1&quot; mag=&quot;1&quot; skl=&quot;0 [rest of string was truncated]&quot;;.
+        ///    &lt;boonStats hp=&quot;0&quot; str=&quot;1&quot; mag=&quot;1&quot; skl=&quot;0&quot; spd=&quot;0&quot; l [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string Data_Stats {
             get {
@@ -2687,6 +2686,16 @@ namespace FEFTwiddler.Properties {
             get {
                 object obj = ResourceManager.GetObject("Skill_228", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] skills {
+            get {
+                object obj = ResourceManager.GetObject("skills", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
